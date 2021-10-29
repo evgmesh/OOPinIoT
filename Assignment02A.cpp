@@ -20,7 +20,7 @@ int main() {
     inputFile.close();
 
     location = find_field(page, "location");
-    temperature = find_field(page, "temperature");
+    temperature = find_field(page, "temp_c");
     cout << "Location: " << location << endl;
     cout << "Temperature: " << temperature << endl;
 
