@@ -17,7 +17,7 @@ int main() {
     cout << endl;
     cout << "Mean of this " << size << " numbers is: " << mean(a,size);
     delete [] a;
-
+    return 0;
 }
 int mean(int *array, int n)
 {
