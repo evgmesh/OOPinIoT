@@ -12,22 +12,23 @@ string find_field(const string &xml, string tag_name);
 int main() {
     string page, line, location, temperature;
     ifstream inputFile("../weather.xml");
-
-    while (getline (inputFile, line)) {
-        page.append(line);
-        line.erase();
+    if(inputFile.is_open()) {
+        while (getline (inputFile, line)) {
+            page.append(line);
+            line.erase();
+        }
+    }
+    else {
+        cout << "Could not open file\n";
+        return -1;
     }
     inputFile.close();
 
     location = find_field(page, "location");
     temperature = find_field(page, "temp_c");
-    cout << "Location: " << location << endl;
-    cout << "Temperature: " << temperature << endl;
-
-// check for not existed tag:
-
-//    line = find_field(page, "line");
-//    cout << "Line: " << line << endl;
+    cout << "Location: " << location << ";\n";
+    cout << "Temperature: " << temperature << ".\n";
+    return 0;
 }
 string find_field(const string &xml, string tag_name)
 {
