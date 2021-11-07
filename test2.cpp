@@ -21,7 +21,7 @@ int main() {
         getline(cin, buffer);
         stringstream (buffer) >> dbbuf;
     }
-    sort(db.begin(), db.end());
+    std::sort(db.begin(), db.end());
     for(auto i = db.begin(); i != db.end(); ++i)
         cout << *i << endl;
     return 0;
