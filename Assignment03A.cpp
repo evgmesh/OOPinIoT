@@ -8,11 +8,11 @@ double getDouble();
 
 using namespace std;
 int main() {
-    
+
     vector<double> db;
     double x = 0;
     cout << "Please enter numbers with format: [1.1]. End with negative number\n";
-    while ((x = getDouble()) != -1)
+    while ((x = getDouble()) >= 0)
         db.push_back(x);
     sort(db.begin(), db.end());
     if(!db.empty()) {
