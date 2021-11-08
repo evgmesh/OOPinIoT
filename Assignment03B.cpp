@@ -6,7 +6,7 @@
 
 using namespace std;
 void printer(vector<string> str);
-vector<string> backwards (vector<string> str);
+void backwards (vector<string> &str);
 
 int main() {
     vector<string> book;
@@ -18,22 +18,17 @@ int main() {
     if(!book.empty()) {
         cout << "In total you have entered " << book.size() << " strings as follow: \n";
         printer(book);
-        book = backwards(book);
+        backwards(book);
         cout << "After reverse and sort\n";
         printer(book);
     }
-
     return 0;
 }
-vector<string> backwards (vector<string> str)
+void backwards (vector<string> &str)
 {
-    vector<string> nstr;
-    for(auto st : str) {
+    for(auto &st : str)
             reverse(st.begin(), st.end());
-            nstr.push_back(st);
-    }
-    sort(nstr.begin(),  nstr.end(), greater<string>());
-    return nstr;
+    sort(str.begin(),  str.end(), greater<string>());
 }
 void printer(vector<string> str)
 {
