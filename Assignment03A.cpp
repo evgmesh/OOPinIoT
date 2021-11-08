@@ -1,3 +1,5 @@
+/* Evgenii Meshcheriakov. Assignment 3 A */
+
 #include <iostream>
 #include <vector>
 #include <iomanip>

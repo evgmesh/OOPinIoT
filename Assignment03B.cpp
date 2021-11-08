@@ -1,4 +1,4 @@
-/* Evgenii Meshcheriakov. Assignment 3 A */
+/* Evgenii Meshcheriakov. Assignment 3 B */
 
 #include <iostream>
 #include <vector>

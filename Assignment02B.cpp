@@ -1,3 +1,5 @@
+/* Evgenii Meshcheriakov. Assignment 2 B */
+
 #include <iostream>
 #include <vector>
 #include <string>

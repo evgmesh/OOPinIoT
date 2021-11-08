@@ -1,3 +1,5 @@
+/* Evgenii Meshcheriakov. Assignment 1 */
+
 #include <iostream>
 #include<cstdlib>
 using namespace std;

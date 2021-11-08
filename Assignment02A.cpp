@@ -1,4 +1,4 @@
-// Exercise 2A
+/* Evgenii Meshcheriakov. Assignment 2 A */
 
 #include <iostream>
 #include <fstream>
