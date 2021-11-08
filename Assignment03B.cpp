@@ -1,6 +1,7 @@
+/* Evgenii Meshcheriakov. Assignment 3 A */
+
 #include <iostream>
 #include <vector>
-#include <iomanip>
 #include <string>
 
 using namespace std;
@@ -21,6 +22,7 @@ int main() {
         cout << "After reverse and sort\n";
         printer(book);
     }
+
     return 0;
 }
 vector<string> backwards (vector<string> str)
