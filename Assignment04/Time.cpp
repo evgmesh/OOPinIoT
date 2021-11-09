@@ -14,9 +14,8 @@ void Time::read(const char *prompt) {
     cin >> hour >> min;
 }
 bool Time::lessThan(Time t2) {
-    int t1min, t2min;
-    t1min = hour * 60 + min;
-    t2min = t2.hour * 60 + t2.min;
+    int t1min = hour * 60 + min;
+    int t2min = t2.hour * 60 + t2.min;
     if(t1min <= t2min)
         return true;
     else
