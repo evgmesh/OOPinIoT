@@ -1,6 +1,4 @@
-//
-// Created by Evgenii Meshcheriakov on 11/9/21.
-//
+/* Evgenii Meshcheriakov. Assignment 4 */
 
 #include "Time.h"
 
@@ -11,15 +9,20 @@ Time::Time() {
 
 void Time::read(const char *prompt) {
     cout << prompt << endl;
-    cin >> hour >> min;
+    char trash;
+    cin >> hour >> trash >> min;
+    while (cin.fail() || hour > 23 || hour < 0
+                      || min > 59  || min < 0) {
+        cout << prompt << ". Format - 00:00\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin >> hour >> trash >> min;
+    }
 }
 bool Time::lessThan(Time t2) {
     int t1min = hour * 60 + min;
     int t2min = t2.hour * 60 + t2.min;
-    if(t1min <= t2min)
-        return true;
-    else
-        return false;
+    return (t1min <= t2min);
 }
 void Time::display() {
     cout << setiosflags(ios::right)

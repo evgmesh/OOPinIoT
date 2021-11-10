@@ -1,6 +1,4 @@
-//
-// Created by Evgenii Meshcheriakov on 11/9/21.
-//
+/* Evgenii Meshcheriakov. Assignment 4 */
 
 #ifndef ASSIGNMENT04_TIME_H
 #define ASSIGNMENT04_TIME_H
@@ -14,8 +12,8 @@ class Time {
         Time();
         void read(const char *prompt);
         bool lessThan(Time t2);
-        void display();
         Time subtract(Time t2);
+        void display();
 
     private:
         int min;
