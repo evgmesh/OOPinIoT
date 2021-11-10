@@ -1,0 +1,3 @@
+/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/cmake-build-debug/CMakeFiles/Assignment05.dir

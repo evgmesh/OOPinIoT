@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/Time.cpp
+Time.h
+/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/Time.h
+
+/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/Time.h
+iostream
+-
+iomanip
+-
+
+/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/main.cpp
+Time.h
+/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/Time.h
+
