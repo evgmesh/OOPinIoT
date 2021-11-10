@@ -11,9 +11,9 @@ class Time {
     public:
         Time();
         void read(const char *prompt);
-        bool lessThan(Time t2);
-        Time subtract(Time t2);
-        void display();
+        bool lessThan(Time t2) const;
+        Time subtract(Time t2) const;
+        void display() const;
 
     private:
         int min;

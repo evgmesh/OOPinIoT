@@ -2,9 +2,7 @@
 
 #include "Time.h"
 
-Time::Time() {
-    int min = 0;
-    int hour = 0;
+Time::Time(): min(0), hour(0) {
 }
 
 void Time::read(const char *prompt) {
@@ -19,18 +17,18 @@ void Time::read(const char *prompt) {
         cin >> hour >> trash >> min;
     }
 }
-bool Time::lessThan(Time t2) {
+bool Time::lessThan(Time t2) const{
     int t1min = hour * 60 + min;
     int t2min = t2.hour * 60 + t2.min;
     return (t1min <= t2min);
 }
-void Time::display() {
+void Time::display() const{
     cout << setiosflags(ios::right)
          << setfill('0') << setw(2) << hour
          << ":" << setfill('0') << setw(2) << min
          << endl;
 }
-Time Time::subtract(Time t2) {
+Time Time::subtract(Time t2) const{
     Time ref;
     int dmin, t1min, t2min;
     t1min = hour * 60 + min;
