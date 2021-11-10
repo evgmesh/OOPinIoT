@@ -26,10 +26,10 @@ ostream &operator<<(ostream &out, const Time &t){
     out << setiosflags(ios::right)
          << setfill('0') << setw(2) << t.hour
          << ":" << setfill('0') << setw(2) << t.min
-         << endl << resetiosflags(ios::right);
+         << resetiosflags(ios::right);
     return out;
 }
-Time Time::subtract(Time t2) const{
+Time Time::operator-(const Time &t2) const {
     Time ref;
     int dmin, t1min, t2min;
     t1min = hour * 60 + min;

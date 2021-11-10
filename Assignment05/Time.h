@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <vector>
 
 
 using namespace std;
@@ -14,7 +15,7 @@ public:
     Time();
     void read(const char *prompt);
     bool operator<(const Time &t2) const;
-    Time subtract(Time t2) const;
+    Time operator-(const Time &t2) const;
 
 private:
     int min;
