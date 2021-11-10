@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/evgeniim/OOPinIoT/Assignment04/Time.h
+iostream
+-
+iomanip
+-
+
+/Users/evgeniim/OOPinIoT/Assignment04/main.cpp
+Time.h
+/Users/evgeniim/OOPinIoT/Assignment04/Time.h
+
