@@ -32,38 +32,38 @@ ostream &operator<<(ostream &out, const Time &t){
 }
 Time Time::operator+(const Time &t2) const {
     Time ref;
-    int dmin, t1min, t2min;
+    int tmin, t1min, t2min;
     t1min = hour * 60 + min;
     t2min = t2.hour * 60 + t2.min;
-    dmin = t1min + t2min;
-    ref.hour = (dmin / 60) % 24;
-    ref.min = dmin % 60;
+    tmin = t1min + t2min;
+    ref.hour = (tmin / 60) % 24;
+    ref.min = tmin % 60;
     return ref;
 }
 Time Time::operator-(const Time &t2) const {
     Time ref;
-    int dmin, t1min, t2min;
+    int tmin, t1min, t2min;
     t1min = hour * 60 + min;
     t2min = t2.hour * 60 + t2.min;
-    dmin = t1min - t2min;
-    if(dmin < 0)
-        dmin += (24 * 60);
-    ref.hour = dmin / 60;
-    ref.min = dmin % 60;
+    tmin = t1min - t2min;
+    if(tmin < 0)
+        tmin += (24 * 60);
+    ref.hour = tmin / 60;
+    ref.min = tmin % 60;
     return ref;
 }
 Time Time::operator++(int) {
     Time old = *this;
-    int minutes = hour * 60 + min;
-    minutes++;
-    hour = (minutes / 60) % 24;
-    min = minutes % 60;
+    plus_one_min();
     return old;
 }
 Time &Time::operator++() {
+    plus_one_min();
+    return *this;
+}
+void Time::plus_one_min() {
     int minutes = hour * 60 + min;
     minutes++;
     hour = (minutes / 60) % 24;
     min = minutes % 60;
-    return *this;
 }

@@ -12,9 +12,8 @@ void print(const vector<Time> &v)
 
 
 int main() {
+#if 0
     Time time1, time2, duration, duration2;
-
-
     time1.read("Enter time 1");
     time2.read("Enter time 2");
     duration = time1 - time2;
@@ -25,8 +24,9 @@ int main() {
         cout << "Starting time was " << time2 << endl;
     }
     cout << "Duration was " << duration << endl;
-#if 0
-    vector<Time> tv(5);
+#endif
+#if 1
+    vector<Time> tv(2);
     for(auto &t : tv) {
         t.read("Enter time:");
     }

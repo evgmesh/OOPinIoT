@@ -6,6 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <string>
 
 #define MAXMIN 60
 
@@ -23,6 +24,7 @@ public:
 private:
     int min;
     int hour;
+    void plus_one_min();
 };
 
 
