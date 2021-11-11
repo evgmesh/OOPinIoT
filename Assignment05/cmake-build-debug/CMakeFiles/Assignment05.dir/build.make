@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /Users/evgeniim/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
+RM = /Users/evgeniim/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05"
+CMAKE_SOURCE_DIR = /Users/evgeniim/OOPinIoT/Assignment05
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/cmake-build-debug"
+CMAKE_BINARY_DIR = /Users/evgeniim/OOPinIoT/Assignment05/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Assignment05.dir/depend.make
@@ -68,29 +68,29 @@ include CMakeFiles/Assignment05.dir/flags.make
 
 CMakeFiles/Assignment05.dir/main.cpp.o: CMakeFiles/Assignment05.dir/flags.make
 CMakeFiles/Assignment05.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Assignment05.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Assignment05.dir/main.cpp.o -c "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/evgeniim/OOPinIoT/Assignment05/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Assignment05.dir/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Assignment05.dir/main.cpp.o -c /Users/evgeniim/OOPinIoT/Assignment05/main.cpp
 
 CMakeFiles/Assignment05.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Assignment05.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/main.cpp" > CMakeFiles/Assignment05.dir/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/evgeniim/OOPinIoT/Assignment05/main.cpp > CMakeFiles/Assignment05.dir/main.cpp.i
 
 CMakeFiles/Assignment05.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Assignment05.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/main.cpp" -o CMakeFiles/Assignment05.dir/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/evgeniim/OOPinIoT/Assignment05/main.cpp -o CMakeFiles/Assignment05.dir/main.cpp.s
 
 CMakeFiles/Assignment05.dir/Time.cpp.o: CMakeFiles/Assignment05.dir/flags.make
 CMakeFiles/Assignment05.dir/Time.cpp.o: ../Time.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Assignment05.dir/Time.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Assignment05.dir/Time.cpp.o -c "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/Time.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/evgeniim/OOPinIoT/Assignment05/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Assignment05.dir/Time.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Assignment05.dir/Time.cpp.o -c /Users/evgeniim/OOPinIoT/Assignment05/Time.cpp
 
 CMakeFiles/Assignment05.dir/Time.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Assignment05.dir/Time.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/Time.cpp" > CMakeFiles/Assignment05.dir/Time.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/evgeniim/OOPinIoT/Assignment05/Time.cpp > CMakeFiles/Assignment05.dir/Time.cpp.i
 
 CMakeFiles/Assignment05.dir/Time.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Assignment05.dir/Time.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/Time.cpp" -o CMakeFiles/Assignment05.dir/Time.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/evgeniim/OOPinIoT/Assignment05/Time.cpp -o CMakeFiles/Assignment05.dir/Time.cpp.s
 
 # Object files for target Assignment05
 Assignment05_OBJECTS = \
@@ -104,7 +104,7 @@ Assignment05: CMakeFiles/Assignment05.dir/main.cpp.o
 Assignment05: CMakeFiles/Assignment05.dir/Time.cpp.o
 Assignment05: CMakeFiles/Assignment05.dir/build.make
 Assignment05: CMakeFiles/Assignment05.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Assignment05"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/evgeniim/OOPinIoT/Assignment05/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Assignment05"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Assignment05.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -116,6 +116,6 @@ CMakeFiles/Assignment05.dir/clean:
 .PHONY : CMakeFiles/Assignment05.dir/clean
 
 CMakeFiles/Assignment05.dir/depend:
-	cd "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05" "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05" "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/cmake-build-debug" "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/cmake-build-debug" "/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/cmake-build-debug/CMakeFiles/Assignment05.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /Users/evgeniim/OOPinIoT/Assignment05/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/evgeniim/OOPinIoT/Assignment05 /Users/evgeniim/OOPinIoT/Assignment05 /Users/evgeniim/OOPinIoT/Assignment05/cmake-build-debug /Users/evgeniim/OOPinIoT/Assignment05/cmake-build-debug /Users/evgeniim/OOPinIoT/Assignment05/cmake-build-debug/CMakeFiles/Assignment05.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Assignment05.dir/depend
 

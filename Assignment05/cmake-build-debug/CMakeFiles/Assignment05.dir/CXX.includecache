@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/Time.cpp
+/Users/evgeniim/OOPinIoT/Assignment05/Time.cpp
 Time.h
-/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/Time.h
+/Users/evgeniim/OOPinIoT/Assignment05/Time.h
 
-/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/Time.h
+/Users/evgeniim/OOPinIoT/Assignment05/Time.h
 iostream
 -
 iomanip
@@ -18,7 +18,7 @@ iomanip
 vector
 -
 
-/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/main.cpp
+/Users/evgeniim/OOPinIoT/Assignment05/main.cpp
 Time.h
-/Users/evgenymeshcheryakov/Documents/Metropolia/2nd year/OOPinIoT/Assignment05/Time.h
+/Users/evgeniim/OOPinIoT/Assignment05/Time.h
 

@@ -1,6 +1,7 @@
 /* Evgenii Meshcheriakov. Assignment 5 */
 
 #include "Time.h"
+using namespace std;
 
 Time::Time(): min(0), hour(0) {
 }
@@ -18,8 +19,8 @@ void Time::read(const char *prompt) {
     }
 }
 bool Time::operator<(const Time &t2) const{
-    int t1min = hour * 60 + min;
-    int t2min = t2.hour * 60 + t2.min;
+    int t1min = hour * MAXMIN + min;
+    int t2min = t2.hour * MAXMIN + t2.min;
     return (t1min <= t2min);
 }
 ostream &operator<<(ostream &out, const Time &t){
@@ -29,13 +30,40 @@ ostream &operator<<(ostream &out, const Time &t){
          << resetiosflags(ios::right);
     return out;
 }
+Time Time::operator+(const Time &t2) const {
+    Time ref;
+    int dmin, t1min, t2min;
+    t1min = hour * 60 + min;
+    t2min = t2.hour * 60 + t2.min;
+    dmin = t1min + t2min;
+    ref.hour = (dmin / 60) % 24;
+    ref.min = dmin % 60;
+    return ref;
+}
 Time Time::operator-(const Time &t2) const {
     Time ref;
     int dmin, t1min, t2min;
     t1min = hour * 60 + min;
     t2min = t2.hour * 60 + t2.min;
     dmin = t1min - t2min;
+    if(dmin < 0)
+        dmin += (24 * 60);
     ref.hour = dmin / 60;
     ref.min = dmin % 60;
     return ref;
+}
+Time Time::operator++(int) {
+    Time old = *this;
+    int minutes = hour * 60 + min;
+    minutes++;
+    hour = (minutes / 60) % 24;
+    min = minutes % 60;
+    return old;
+}
+Time &Time::operator++() {
+    int minutes = hour * 60 + min;
+    minutes++;
+    hour = (minutes / 60) % 24;
+    min = minutes % 60;
+    return *this;
 }
