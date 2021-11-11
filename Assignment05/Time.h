@@ -8,7 +8,6 @@
 #include <vector>
 #include <string>
 
-#define MAXMIN 60
 
 class Time {
     friend std::ostream &operator<<(std::ostream &out, const Time &t);

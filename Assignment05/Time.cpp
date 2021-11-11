@@ -19,8 +19,8 @@ void Time::read(const char *prompt) {
     }
 }
 bool Time::operator<(const Time &t2) const{
-    int t1min = hour * MAXMIN + min;
-    int t2min = t2.hour * MAXMIN + t2.min;
+    int t1min = hour * 60 + min;
+    int t2min = t2.hour * 60 + t2.min;
     return (t1min <= t2min);
 }
 ostream &operator<<(ostream &out, const Time &t){
