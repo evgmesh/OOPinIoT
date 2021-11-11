@@ -24,6 +24,7 @@ private:
     int min;
     int hour;
     void plus_one_min();
+    int total_min(Time t2, bool plus) const;
 };
 
 
