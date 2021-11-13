@@ -3,4 +3,4 @@ project(Assignment06)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Assignment06 main.cpp)
+add_executable(Assignment06 main.cpp Time.cpp Time.h Day.cpp Day.h)
