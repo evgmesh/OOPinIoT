@@ -3,8 +3,16 @@
 #include "Time.h"
 using namespace std;
 
-Time::Time(): min(0), hour(0) {
+Time::Time(int hour0, int min0): hour(hour0), min(min0) {
 }
+//Time::Time() {
+//    hour = 0;
+//    min = 0;
+//}
+//Time::Time(int hour0, int min0) {
+//    hour = hour0;
+//    min = min0;
+//}
 
 void Time::read(const char *prompt) {
     cout << prompt << endl;
@@ -21,7 +29,17 @@ void Time::read(const char *prompt) {
 bool Time::operator<(const Time &t2) const{
     int t1min = hour * 60 + min;
     int t2min = t2.hour * 60 + t2.min;
-    return (t1min <= t2min);
+    return (t1min < t2min);
+}
+bool Time::operator>(const Time &t2) const{
+    int t1min = hour * 60 + min;
+    int t2min = t2.hour * 60 + t2.min;
+    return (t1min > t2min);
+}
+bool Time::operator==(const Time &t2) const{
+    int t1min = hour * 60 + min;
+    int t2min = t2.hour * 60 + t2.min;
+    return (t1min == t2min);
 }
 ostream &operator<<(ostream &out, const Time &t){
     out << setiosflags(ios::right)
@@ -30,6 +48,11 @@ ostream &operator<<(ostream &out, const Time &t){
         << resetiosflags(ios::right);
     return out;
 }
+istream &operator>>(istream &in, const Time &t) {
+    in >> t.hour >> t.min;
+    return in;
+}
+
 Time Time::operator+(const Time &t2) const {
     Time ref;
     int tmin = total_min(t2, true);;
