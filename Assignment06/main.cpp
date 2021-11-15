@@ -5,45 +5,54 @@
 
 using namespace std;
 
-
-int main()
+void print(const vector<Time> &v)
 {
-    ifstream inputFile("calendar.txt");
+    for(auto &t : v) {
+        cout << t << endl;
+    }
+}
 
-    if (!inputFile.is_open()) {
-        cout << "Unable to open file" << endl;
-        return 1;
+
+int main() {
+#if 1
+    Time time1, time2, duration, duration2;
+    time1.read("Enter time 1");
+    time2.read("Enter time 2");
+    if (time1<time2) {
+        duration = time2 - time1;
+        cout << "Starting time was " << time1 << endl;
+    } else {
+        duration = time1 - time2;
+        cout << "Starting time was " << time2 << endl;
+    }
+    cout << "Duration was " << duration << endl;
+    cout << time1 + time2 << endl;
+#endif
+#if 0
+    vector<Time> tv(2);
+    for(auto &t : tv) {
+        t.read("Enter time:");
     }
 
-    string line;
-    vector<Day> cal;
-    Day day;
-
-    while (getline(inputFile, line)) {
-        if (day.from_str(line)) {
-            cal.push_back(day);
-        }
+    cout << "Post-increment: \nOriginal time:" << endl;
+    print(tv);
+    for(auto &t : tv) {
+        cout << t++ << endl;
     }
-    cout << "Calendar" << endl;
-
-    for (auto& e : cal) {
-        cout << e.to_str() << endl;
+    cout << "Time after loop with post-increment" << endl;
+    print(tv);
+    cout << "Pre-increment: " << endl;
+    for(auto &t : tv) {
+        cout << ++t << endl;
     }
+    sort(tv.begin(), tv.end());
 
-    // DST shift
-    for (auto& e : cal) {
-        e.dst(1);
-    }
-    cout << "DST" << endl;
-
-    for (auto& e : cal) {
-        cout << e.to_str() << endl;
-    }
-
-    cout << "End" << endl;
-
+    cout << "Sorted times: " << endl;
+    print(tv);
+#endif
     return 0;
 }
+
 
 
 
