@@ -23,7 +23,7 @@ bool Day::from_str(const string &s) {
     }
     return read;
 }
-string Day::to_str() {
+string Day::to_str() const{
     ostringstream out;
     out << day << " " << month << " ";
     for (auto &t : list) {

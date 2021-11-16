@@ -9,7 +9,7 @@ class Day {
 public:
     Day();
     bool from_str(const std::string &s);
-    std::string to_str();
+    std::string to_str() const;
     void dst(int offset);
 private:
     int day;
