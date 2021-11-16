@@ -12,10 +12,9 @@ int main() {
         return 1;
     }
 
-    string line;
+    string line, buf;
     vector<Day> cal;
     Day day;
-
     while (getline(inputFile, line)) {
         if (day.from_str(line)) {
             cal.push_back(day);
@@ -26,6 +25,17 @@ int main() {
     for (auto& e : cal) {
         cout << e.to_str() << endl;
     }
+    // DST shift
+    for (auto& e : cal) {
+        e.dst(-1);
+    }
+    cout << "DST" << endl;
+
+    for (auto& e : cal) {
+        cout << e.to_str() << endl;
+    }
+
+    cout << "End" << endl;
 
     return 0;
 }

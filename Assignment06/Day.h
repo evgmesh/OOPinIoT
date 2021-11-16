@@ -4,7 +4,7 @@
 #define ASSIGNMENT06_DAY_H
 
 #include "Time.h"
-#if 1
+
 class Day {
 public:
     Day();
@@ -16,5 +16,5 @@ private:
     std::string month;
     std::vector<Time> list;
 };
-#endif
+
 #endif //ASSIGNMENT06_DAY_H
