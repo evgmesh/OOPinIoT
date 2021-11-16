@@ -5,27 +5,6 @@ using namespace std;
 
 Time::Time(int hour0, int min0): hour(hour0), min(min0) {
 }
-//Time::Time() {
-//    hour = 0;
-//    min = 0;
-//}
-//Time::Time(int hour0, int min0) {
-//    hour = hour0;
-//    min = min0;
-//}
-
-void Time::read(const char *prompt) {
-    cout << prompt << endl;
-    char trash;
-    cin >> hour >> trash >> min;
-    while (cin.fail() || hour > 23 || hour < 0
-           || min > 59  || min < 0) {
-        cout << prompt << ". Format - 00:00\n";
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cin >> hour >> trash >> min;
-    }
-}
 bool Time::operator<(const Time &t2) const{
     int t1min = hour * 60 + min;
     int t2min = t2.hour * 60 + t2.min;
@@ -48,11 +27,18 @@ ostream &operator<<(ostream &out, const Time &t){
         << resetiosflags(ios::right);
     return out;
 }
-istream &operator>>(istream &in, const Time &t) {
-    in >> t.hour >> t.min;
+istream &operator>>(istream &in, Time &t) {
+    char trash;
+    in >> t.hour >> trash >> t.min;
+    while (cin.fail() || t.hour > 23 || t.hour < 0
+           || t.min > 59  || t.min < 0) {
+        cout << "Please use following format - 00:00\n";
+        in.clear();
+        in.ignore(numeric_limits<streamsize>::max(), '\n');
+        in >> t.hour >> trash >> t.min;
+    }
     return in;
 }
-
 Time Time::operator+(const Time &t2) const {
     Time ref;
     int tmin = total_min(t2, true);;
