@@ -8,6 +8,13 @@ Day::Day() : day(0), month(""), list(){
 bool Day::from_str(const string &s) {
     Time time1;
     istringstream sin(s);
+    if (sin >> day) {}
+    if (sin >> month) {}
+    if (sin >> time1) {
+        list.push_back(time1);
+        return true;
+    } else return false;
+    /*
     while (sin >> day) {
 
     }
@@ -17,7 +24,7 @@ bool Day::from_str(const string &s) {
     while (sin >> time1) {
         list.push_back(time1);
     }
-
+    */
 }
 string Day::to_str() {
     cout << day << " " << month;
