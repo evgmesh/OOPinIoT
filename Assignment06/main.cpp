@@ -27,7 +27,7 @@ int main() {
     }
     // DST shift
     for (auto& e : cal) {
-        e.dst(1);
+        e.dst(-250);
     }
     cout << "DST" << endl;
 

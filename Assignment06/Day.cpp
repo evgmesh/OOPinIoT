@@ -32,7 +32,7 @@ string Day::to_str() const{
     return out.str();
 }
 void Day::dst(int offset) {
-    if(offset < 0)
+    while (offset < 0)
         offset += 24;
     Time t2(offset, 0);
     for (auto &t : list)
