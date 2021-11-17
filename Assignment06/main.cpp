@@ -4,7 +4,8 @@
 #include "Day.h"
 
 using namespace std;
-int main() {
+int main()
+{
     ifstream inputFile("../lab6_calendar.txt");
 
     if (!inputFile.is_open()) {
@@ -12,9 +13,10 @@ int main() {
         return 1;
     }
 
-    string line, buf;
+    string line;
     vector<Day> cal;
     Day day;
+
     while (getline(inputFile, line)) {
         if (day.from_str(line)) {
             cal.push_back(day);
@@ -25,9 +27,10 @@ int main() {
     for (auto& e : cal) {
         cout << e.to_str() << endl;
     }
+
     // DST shift
     for (auto& e : cal) {
-        e.dst(-250);
+        e.dst(-1);
     }
     cout << "DST" << endl;
 

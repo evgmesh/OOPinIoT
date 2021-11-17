@@ -41,7 +41,7 @@ istream &operator>>(istream &in, Time &t) {
 }
 Time Time::operator+(const Time &t2) const {
     Time ref;
-    int tmin = total_min(t2, true);;
+    int tmin = total_min(t2, true);
     ref.hour = (tmin / 60) % 24;
     ref.min = tmin % 60;
     return ref;
@@ -70,7 +70,6 @@ void Time::plus_one_min() {
     hour = (minutes / 60) % 24;
     min = minutes % 60;
 }
-
 int Time::total_min(Time t2, bool plus) const{
     int t1min, t2min;
     t1min = hour * 60 + min;
