@@ -9,7 +9,7 @@ RandGen::RandGen(int lower0, int upper0) : lower(lower0), upper(upper0), numbers
 int RandGen::operator()() {
     int number;
     do {
-        number = rand() % 10 + 1;
+        number = rand() % upper + lower;
     } while (find(numbers.begin(), numbers.end(), number) != numbers.end());
     numbers.push_back(number);
     return number;
