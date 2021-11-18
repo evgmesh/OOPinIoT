@@ -9,10 +9,12 @@
 
 class RandGen {
     public:
-        RandGen(): numbers() {srand(time(NULL));}
-        int operator () ();
+        RandGen(int lower0 = 0, int upper0 = 0);
+        int operator() ();
 
     private:
+        int lower;
+        int upper;
         std::vector<int> numbers;
 };
 
