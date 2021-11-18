@@ -9,7 +9,7 @@
 
 class RandGen {
     public:
-        RandGen(int lower0 = 0, int upper0 = 0);
+        RandGen(int lower0 = 1, int upper0 = 40);
         int operator() ();
 
     private:
