@@ -17,14 +17,15 @@ int main() {
         gen("Lotto: ", numbersLot, randGenLot);
         gen("Viking lotto: ", numbersVik, randGenVik);
 
-        cout << "Matching numbers" << endl;
+        cout << "Matching numbers:" << endl;
         intersect(numbersLot, numbersVik, intersected1);
+
         gen("Eurojackpot: ", numbersEuro, randGenEuro);
 
         cout << "Matching numbers in three sets:" << endl;
         intersect(intersected1, numbersEuro, intersected2);
-        cout << "Do you what to continue (type \"yes\" for continue)?" << endl;
 
+        cout << "Do you what to continue (type \"yes\" for continue)?" << endl;
         cin >> again;
     } while (again == "yes");
 
