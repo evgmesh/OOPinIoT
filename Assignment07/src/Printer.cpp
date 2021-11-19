@@ -1,6 +1,6 @@
+/* Evgenii Meshcheriakov. Assignment 7 */
 
-
-#include "Printer.h"
+#include "../lib/Printer.h"
 Printer::Printer(int index0) : index(index0) {
 
 }

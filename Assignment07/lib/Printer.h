@@ -1,6 +1,4 @@
-//
-// Created by Evgenii Meshcheriakov on 11/19/21.
-//
+/* Evgenii Meshcheriakov. Assignment 7 */
 
 #ifndef ASSIGNMENT07_PRINTER_H
 #define ASSIGNMENT07_PRINTER_H

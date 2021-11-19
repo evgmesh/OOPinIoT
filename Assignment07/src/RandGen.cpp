@@ -1,6 +1,6 @@
 /* Evgenii Meshcheriakov. Assignment 7 */
 
-#include "RandGen.h"
+#include "../lib/RandGen.h"
 
 RandGen::RandGen(int lower0, int upper0) : lower(lower0), upper(upper0), numbers(0) {
     srand(time(NULL));

@@ -1,7 +1,7 @@
 /* Evgenii Meshcheriakov. Assignment 7 */
 
-#include "RandGen.h"
-#include "Printer.h"
+#include "lib/RandGen.h"
+#include "lib/Printer.h"
 
 using namespace std;
 
@@ -43,7 +43,11 @@ void intersect(vector<int> &nmb1, vector<int> &nmb2, vector<int> &nmbinter)
     Printer printer;
     set_intersection(nmb1.begin(), nmb1.end(), nmb2.begin(), nmb2.end(),
                      back_inserter(nmbinter));
-    for_each(nmbinter.begin(), nmbinter.end(), printer);
-    cout << endl;
+    if(!nmbinter.empty()) {
+        for_each(nmbinter.begin(), nmbinter.end(), printer);
+        cout << endl;
+    }
+    else
+        cout << "No match!\n";
 }
 
