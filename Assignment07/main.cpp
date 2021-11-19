@@ -1,51 +1,52 @@
 /* Evgenii Meshcheriakov. Assignment 7 */
 
 #include "RandGen.h"
-
-
-
+#include "Inter.h"
 
 using namespace std;
-int main() {
 
-    RandGen randGenLot, randGenVik(1,48), randGenEuro(1,50);
+void gen(string game, vector<int> &numbers, RandGen &randGen);
+void intersect(vector<int> &nmb1, vector<int> &nmb2, vector<int> &nmbinter);
+
+int main() {
+    string again("");
+    RandGen randGenLot, randGenVik(1, 48), randGenEuro(1, 50);
     vector<int> numbersLot(7), numbersVik(6), numbersEuro(5);
 
-    generate(numbersLot.begin(), numbersLot.end(), randGenLot);
-    generate(numbersVik.begin(), numbersVik.end(), randGenVik);
-    generate(numbersEuro.begin(), numbersEuro.end(), randGenEuro);
+    do {
+        vector<int> intersected1, intersected2;
 
-    cout << "Lotto: ";
-    copy(numbersLot.begin(),numbersLot.end(), ostream_iterator<int>(cout, " "));
-    cout << endl;
+        gen("Lotto: ", numbersLot, randGenLot);
+        gen("Viking lotto: ", numbersVik, randGenVik);
 
-    cout << "Viking lotto: ";
-    copy(numbersVik.begin(),numbersVik.end(), ostream_iterator<int>(cout, " "));
-    cout << endl;
+        cout << "Matching numbers" << endl;
+        intersect(numbersLot, numbersVik, intersected1);
 
-    cout << "Eurojackpot: ";
-    copy(numbersEuro.begin(),numbersEuro.end(), ostream_iterator<int>(cout, " "));
-    cout << endl;
+        gen("Eurojackpot: ", numbersEuro, randGenEuro);
+        cout << "Matching numbers in three sets:" << endl;
+        intersect(intersected1, numbersEuro, intersected2);
 
-    sort(numbersLot.begin(), numbersLot.end());
-    sort(numbersVik.begin(), numbersVik.end());
-    sort(numbersEuro.begin(), numbersEuro.end());
+        cout << "Do you what to continue (type \"yes\" for continue)?" << endl;
+        cin >> again;
+    } while (again == "yes");
 
-    vector<int> intersect;
-    set_intersection(numbersLot.begin(), numbersLot.end(),
-                     numbersVik.begin(), numbersVik.end(),
-                     back_inserter(intersect));
-    cout << "Intersections of first two:" << endl;
-    copy(intersect.begin(),intersect.end(), ostream_iterator<int>(cout, " "));
-    cout << endl;
-
-    // following code is not working as I wanted. need to change it;
-
-    set_intersection(intersect.begin(), intersect.end(),
-                     numbersEuro.begin(), numbersEuro.end(),
-                     back_inserter(intersect));
-    cout << "Intersections of all three:" << endl;
-    copy(intersect.begin(),intersect.end(), ostream_iterator<int>(cout, " "));
 
     return 0;
 }
+
+void gen(string prompt, vector<int> &numbers, RandGen &randGen)
+{
+    cout << prompt;
+    generate(numbers.begin(), numbers.end(), randGen);
+    copy(numbers.begin(), numbers.end(), ostream_iterator<int>(cout, " "));
+    cout << endl;
+    sort(numbers.begin(), numbers.end());
+}
+void intersect(vector<int> &nmb1, vector<int> &nmb2, vector<int> &nmbinter)
+{
+    set_intersection(nmb1.begin(), nmb1.end(), nmb2.begin(), nmb2.end(),
+                     back_inserter(nmbinter));
+    for_each(nmbinter.begin(), nmbinter.end(), [](int i) -> void { cout << i << " "; });
+    cout << endl;
+}
+

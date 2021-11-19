@@ -3,4 +3,4 @@ project(Assignment07)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Assignment07 main.cpp RandGen.cpp RandGen.h)
+add_executable(Assignment07 main.cpp RandGen.cpp RandGen.h Inter.cpp Inter.h)
