@@ -1,6 +1,4 @@
-//
-// Created by Evgenii Meshcheriakov on 11/24/21.
-//
+/* Evgenii Meshcheriakov. Assignment 8 */
 
 #ifndef ASSIGNMENT08_SPY_H
 #define ASSIGNMENT08_SPY_H

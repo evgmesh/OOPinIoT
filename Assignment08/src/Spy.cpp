@@ -1,5 +1,3 @@
-//
-// Created by Evgenii Meshcheriakov on 11/24/21.
-//
+/* Evgenii Meshcheriakov. Assignment 8 */
 
 #include "../lib/Spy.h"
