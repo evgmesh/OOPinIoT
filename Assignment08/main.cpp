@@ -2,11 +2,7 @@
 #include "lib/Spy.h"
 
 int main(int argc, char** argv) {
-    Person agent("James Bond");
 
-    std::cout << std::endl << "Nice to meet you. ";
-    agent.identity();
-#if 0
     Person agent("James Bond");
     Spy spy("Emilio Largo", "William Johnson", 3);
     Spy spy2("Ernst Blofield", "John Keats", 5);
@@ -30,6 +26,5 @@ int main(int argc, char** argv) {
         spy2.interrogate();
         spy2.identity();
     }
-#endif
     return 0;
 }

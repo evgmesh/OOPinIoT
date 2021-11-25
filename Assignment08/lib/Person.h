@@ -9,7 +9,7 @@
 
 class Person {
 public:
-    Person(const char *name = "nobody");
+    Person(const char *name_p = "nobody");
     virtual ~Person() = default;
     virtual void identity() const;
     virtual void interrogate();
