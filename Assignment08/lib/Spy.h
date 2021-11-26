@@ -7,8 +7,7 @@
 
 class Spy: public Person{
 public:
-    Spy(const char *name0 = "classified", const char *alias0 = "classified", const int resistance0 = 0) :
-    Person(name0), alias(alias0), resistance(resistance0) {};
+    Spy(const char *name0 = "classified", const char *alias0 = "classified", int resistance0 = 0);
     void identity() const override;
     void interrogate() override;
     void set_identity(const char *alias0);
