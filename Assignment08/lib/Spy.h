@@ -11,7 +11,7 @@ public:
     void identity() const override;
     void interrogate() override;
     void set_identity(const char *alias0);
-
+    ~Spy() = default;
 private:
     std::string alias;
     int resistance;
