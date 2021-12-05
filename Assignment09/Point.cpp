@@ -3,16 +3,21 @@
 
 #include "Point.h"
 
-Point::Point(double xcoord, double ycoord) {
+using namespace std;
+Point::Point(double xcoord, double ycoord): x(xcoord), y(ycoord) {
 
 }
 
 void Point::input(const char *prompt) {
-
+    cout << prompt << endl;
+    cout << "Enter x:";
+    cin >> x;
+    cout << "Enter y:";
+    cin >> y;
 }
 
 void Point::output() const {
-
+    cout << "Coordinates: (" << x << "," << y << ")" << endl;
 }
 
 double Point::area() const {

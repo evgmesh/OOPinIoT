@@ -3,6 +3,7 @@
 #ifndef ASSIGNMENT09_POINT_H
 #define ASSIGNMENT09_POINT_H
 
+#include <iostream>
 
 class Point {
 public:
