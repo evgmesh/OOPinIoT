@@ -1,6 +1,6 @@
 /* Evgenii Meshcheriakov. Assignment 9 */
 
-#include "Circle.h"
+#include "../lib/Circle.h"
 
 using namespace std;
 Circle::Circle(double xcoord, double ycoord, double radius): Point(xcoord,ycoord), r(radius) {

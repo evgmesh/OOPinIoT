@@ -1,6 +1,6 @@
 /* Evgenii Meshcheriakov. Assignment 9 */
 
-#include "Square.h"
+#include "../lib/Square.h"
 
 using namespace std;
 Square::Square(double xcoord, double ycoord, double width, double height):

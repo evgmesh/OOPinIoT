@@ -3,4 +3,4 @@ project(Assignment09)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Assignment09 main.cpp Point.cpp Point.h Circle.cpp Circle.h Square.cpp Square.h)
+add_executable(Assignment09 main.cpp src/Point.cpp lib/Point.h src/Circle.cpp lib/Circle.h src/Square.cpp lib/Square.h)

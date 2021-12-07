@@ -1,7 +1,7 @@
 /* Evgenii Meshcheriakov. Assignment 9 */
 
 
-#include "Point.h"
+#include "../lib/Point.h"
 
 using namespace std;
 Point::Point(double xcoord, double ycoord): x(xcoord), y(ycoord) {
