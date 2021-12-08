@@ -1,6 +1,4 @@
-//
-// Created by Evgenii Meshcheriakov on 12/7/21.
-//
+/* Evgenii Meshcheriakov. Assignment 10 */
 
 #ifndef ASSIGNMENT10_LIMITEDCOUNTER_H
 #define ASSIGNMENT10_LIMITEDCOUNTER_H

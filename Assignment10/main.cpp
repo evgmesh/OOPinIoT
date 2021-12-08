@@ -59,7 +59,7 @@ void UseCounter(Counter& ctr, int num) {
 #endif
 
 #if 0
-//Vasily's way
+//one more way
 void UseCounter(Counter& ctr, int num) {
     for (int i = 0; i < abs(num); ++i)
         num > 0 ? ctr.dec() : ctr.inc();
