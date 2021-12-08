@@ -30,7 +30,7 @@ ostream &operator<<(ostream &out, const Time &t){
 istream &operator>>(istream &in, Time &t) {
     char trash;
     in >> t.hour >> trash >> t.min;
-    while (cin.fail() || t.hour > 23 || t.hour < 0
+    while (in.fail() || t.hour > 23 || t.hour < 0
            || t.min > 59  || t.min < 0) {
         cout << "Please use following format - 00:00\n";
         in.clear();
