@@ -45,21 +45,8 @@ void UseCounter(Counter& ctr, int num) {
     }
 }
 
-// other way of function
 #if 0
-void UseCounter(Counter& ctr, int num) {
-    if(num > 0) {
-        for (int i = 0; i < num; ++i)
-            ctr.inc();
-    } else {
-        for (int i = num; i<0; ++i)
-            ctr.dec();
-    }
-}
-#endif
-
-#if 0
-//one more way
+//one more way. less efficient in terms of resourses usage
 void UseCounter(Counter& ctr, int num) {
     for (int i = 0; i < abs(num); ++i)
         num > 0 ? ctr.dec() : ctr.inc();
