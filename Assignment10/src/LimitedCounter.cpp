@@ -2,7 +2,8 @@
 
 #include "../lib/LimitedCounter.h"
 
-LimitedCounter::LimitedCounter(int initial0, int upper0): counter(initial0), upperlim(upper0) {
+LimitedCounter::LimitedCounter(int counter0, int upperlim0):
+    counter(counter0<=upperlim0?counter0:upperlim0), upperlim(upperlim0) {
 }
 
 void LimitedCounter::inc() {

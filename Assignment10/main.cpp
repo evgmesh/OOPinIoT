@@ -10,8 +10,8 @@ void UseCounter(Counter& ctr, int num);
 
 int main(int argc, char** argv) {
 
-    LimitedCounter lc(0, 5);
-    OverflowCounter oc(5, 9);
+    LimitedCounter lc(6, 5);
+    OverflowCounter oc(10,9);
 
     cout << oc << endl;
     UseCounter(oc, 5);

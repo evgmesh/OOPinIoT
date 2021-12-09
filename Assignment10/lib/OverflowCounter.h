@@ -1,6 +1,4 @@
-//
-// Created by Evgenii Meshcheriakov on 12/7/21.
-//
+/* Evgenii Meshcheriakov. Assignment 10 */
 
 #ifndef ASSIGNMENT10_OVERFLOWCOUNTER_H
 #define ASSIGNMENT10_OVERFLOWCOUNTER_H
@@ -9,7 +7,7 @@
 
 class OverflowCounter: public Counter{
 public:
-    OverflowCounter(int counter, int upperlimit);
+    OverflowCounter(int counter = 0, int upperlimit = 0);
     void inc() override;
     void dec() override;
     operator int() override;

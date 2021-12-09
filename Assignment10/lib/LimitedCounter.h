@@ -7,7 +7,7 @@
 
 class LimitedCounter: public Counter{
 public:
-    LimitedCounter(int counter, int upperlimit);
+    LimitedCounter(int counter = 0, int upperlimit = 0);
     void inc() override;
     void dec() override;
     operator int() override;

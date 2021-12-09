@@ -3,7 +3,8 @@
 #include "../lib/OverflowCounter.h"
 
 
-OverflowCounter::OverflowCounter(int counter0, int upperlimit0): counter(counter0), upperlim(upperlimit0) {
+OverflowCounter::OverflowCounter(int counter0, int upperlimit0):
+    counter(counter0<=upperlimit0?counter0:upperlimit0), upperlim(upperlimit0) {
 }
 
 void OverflowCounter::inc() {
