@@ -1,14 +1,17 @@
-//
-// Created by Evgenii Meshcheriakov on 12/9/21.
-//
+/* Evgenii Meshcheriakov. Assignment 11 */
 
 #ifndef ASSIGNMENT11_COUNTERUSER_H
 #define ASSIGNMENT11_COUNTERUSER_H
+#include "Observer.h"
+#include "OverflowCounter.h"
 
+class CounterUser: public Observer{
+public:
+    CounterUser(int lim = 5);
+    void HandleLimitReached() override;
 
-
-class CounterUser {
-
+private:
+    OverflowCounter ofc;
 };
 
 

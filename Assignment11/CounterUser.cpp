@@ -1,5 +1,11 @@
-//
-// Created by Evgenii Meshcheriakov on 12/9/21.
-//
+/* Evgenii Meshcheriakov. Assignment 11 */
 
 #include "CounterUser.h"
+
+void CounterUser::HandleLimitReached() {
+
+}
+
+CounterUser::CounterUser(int lim) {
+    ofc.SetObserver(this);
+}
