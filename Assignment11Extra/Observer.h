@@ -1,0 +1,6 @@
+/* Evgenii Meshcheriakov. Assignment 11 Extra */
+
+#ifndef ASSIGNMENT11EXTRA_OBSERVER_H
+#define ASSIGNMENT11EXTRA_OBSERVER_H
+
+#endif //ASSIGNMENT11EXTRA_OBSERVER_H

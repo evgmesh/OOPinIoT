@@ -3,4 +3,4 @@ project(Assignment11Extra)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Assignment11Extra main.cpp)
+add_executable(Assignment11Extra main.cpp Counter.h Observer.h CounterObserver.h)
