@@ -9,6 +9,7 @@ class CounterUser: public Observer{
 public:
     CounterUser(int lim = 5);
     void HandleLimitReached() override;
+    void IncrementBy(int n);
 
 private:
     OverflowCounter ofc;

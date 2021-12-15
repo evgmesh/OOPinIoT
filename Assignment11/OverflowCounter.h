@@ -2,6 +2,7 @@
 
 #ifndef ASSIGNMENT11_OVERFLOWCOUNTER_H
 #define ASSIGNMENT11_OVERFLOWCOUNTER_H
+#include "iostream"
 #include "Counter.h"
 #include "Observer.h"
 

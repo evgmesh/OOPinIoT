@@ -7,7 +7,12 @@ OverflowCounter::OverflowCounter(int counter0, int upperlimit0):
 }
 
 void OverflowCounter::inc() {
-    counter < upperlim ? ++counter : counter = 0;
+    if(counter < upperlim)
+        ++counter;
+    else {
+        Notify();
+        counter = 0;
+    }
 }
 
 void OverflowCounter::dec() {
@@ -18,10 +23,12 @@ OverflowCounter::operator int() {
     return counter;
 }
 
-void OverflowCounter::SetObserver(Observer *) {
-    Notify();
+void OverflowCounter::SetObserver(Observer *observer) {
+    obs = observer;
 }
 
 void OverflowCounter::Notify() {
     obs->HandleLimitReached();
 }
+
+

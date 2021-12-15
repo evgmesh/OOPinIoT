@@ -2,11 +2,15 @@
 
 #include "CounterUser.h"
 
-using namespace std;
+
 void CounterUser::HandleLimitReached() {
-    cout << "The limit has been reached" << endl;
+    std::cout << "The limit has been reached" << std::endl;
 }
 
-CounterUser::CounterUser(int lim) {
+CounterUser::CounterUser(int lim): ofc(0, lim) {
     ofc.SetObserver(this);
+}
+
+void CounterUser::IncrementBy(int n) {
+    for (int i = 0; i<n; i++) ofc.inc();
 }
