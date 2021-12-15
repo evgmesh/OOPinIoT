@@ -23,10 +23,11 @@ OverflowCounter::operator int() {
     return counter;
 }
 
-void OverflowCounter::SetObserver(Observer *observer) {
-    obs = observer;
+void OverflowCounter::SetObserver(CounterObserver *observer) {
+    cov.push_back(observer);
 }
 
 void OverflowCounter::Notify() {
-    obs->HandleLimitReached();
+//    for(auto &ob : cov)
+//        ob->HandleLimitReached();
 }

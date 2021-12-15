@@ -8,8 +8,7 @@ LimitedCounter::LimitedCounter(int counter0, int upperlim0):
 }
 
 void LimitedCounter::inc() {
-    if(counter < upperlim)
-        ++counter;
+    counter < upperlim ? ++counter: ;
 }
 
 void LimitedCounter::dec() {

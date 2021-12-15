@@ -2,7 +2,7 @@
 
 #ifndef ASSIGNMENT11EXTRA_OVERFLOWCOUNTER_H
 #define ASSIGNMENT11EXTRA_OVERFLOWCOUNTER_H
-#include "iostream"
+
 #include "Counter.h"
 #include "Observer.h"
 
@@ -12,12 +12,12 @@ public:
     void inc() override;
     void dec() override;
     operator int() override;
-    void SetObserver(Observer *);
+    void SetObserver(CounterObserver *) override;
 
 private:
     int counter;
     int upperlim;
-    Observer* obs;
+    std::vector<CounterObserver * > cov;
     void Notify();
 };
 

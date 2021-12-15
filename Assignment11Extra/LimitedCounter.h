@@ -16,6 +16,8 @@ public:
 private:
     int counter;
     int upperlim;
+    std::vector<CounterObserver * > cov;
+    void Notify();
 };
 
 

@@ -3,6 +3,8 @@
 
 #ifndef ASSIGNMENT11EXTRA_COUNTER_H
 #define ASSIGNMENT11EXTRA_COUNTER_H
+#include <iostream>
+#include <vector>
 
 class CounterObserver;
 class Counter {
