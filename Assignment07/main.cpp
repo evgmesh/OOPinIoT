@@ -10,7 +10,7 @@ void intersect(vector<int> &nmb1, vector<int> &nmb2, vector<int> &nmbinter);
 
 int main() {
     string again("");
-    RandGen randGenLot, randGenVik(1, 48), randGenEuro(1, 50);
+    RandGen randGenLot, randGenVik(40, 48), randGenEuro(10, 50);
     vector<int> numbersLot(7), numbersVik(6), numbersEuro(5);
     do {
         vector<int> intersected1, intersected2;
