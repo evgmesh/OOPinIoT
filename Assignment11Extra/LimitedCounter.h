@@ -5,6 +5,7 @@
 #define ASSIGNMENT11EXTRA_LIMITEDCOUNTER_H
 
 #include "Counter.h"
+#include "Observer.h"
 
 class LimitedCounter: public Counter{
 public:
@@ -13,6 +14,7 @@ public:
     void dec() override;
     operator int() override;
     void SetObserver(CounterObserver *) override;
+
 
 private:
     int counter;

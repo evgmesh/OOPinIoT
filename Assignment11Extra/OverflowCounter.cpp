@@ -10,8 +10,8 @@ void OverflowCounter::inc() {
     if(counter < upperlim)
         ++counter;
     else {
-        Notify();
         counter = 0;
+        Notify();
     }
 }
 
@@ -28,6 +28,6 @@ void OverflowCounter::SetObserver(CounterObserver *observer) {
 }
 
 void OverflowCounter::Notify() {
-//    for(auto &ob : cov)
-//        ob->HandleLimitReached();
+    for(auto &ob : cov)
+        ob->HandleLimitReached(this);
 }

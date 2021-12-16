@@ -8,7 +8,12 @@ LimitedCounter::LimitedCounter(int counter0, int upperlim0):
 }
 
 void LimitedCounter::inc() {
-    counter < upperlim ? ++counter: ;
+    if(counter < upperlim) {
+        ++counter;
+        if(counter == upperlim)
+            Notify();
+    } else
+        Notify();
 }
 
 void LimitedCounter::dec() {
@@ -20,6 +25,11 @@ LimitedCounter::operator int() {
     return counter;
 }
 
-void LimitedCounter::SetObserver(CounterObserver *) {
+void LimitedCounter::SetObserver(CounterObserver * observer) {
+    cov.push_back(observer);
+}
 
+void LimitedCounter::Notify() {
+    for(auto &ob : cov)
+        ob->HandleLimitReached(this);
 }
