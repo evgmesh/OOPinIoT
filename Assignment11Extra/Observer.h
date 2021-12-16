@@ -2,10 +2,12 @@
 
 #ifndef ASSIGNMENT11EXTRA_OBSERVER_H
 #define ASSIGNMENT11EXTRA_OBSERVER_H
+#include "CounterObserver.h"
+#include "Counter.h"
 
-class Observer{
+class Observer: public CounterObserver{
 public:
-    virtual void HandleLimitReached() = 0;
+    void HandleLimitReached(Counter *) override;
 
 };
 

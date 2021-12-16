@@ -19,3 +19,7 @@ void LimitedCounter::dec() {
 LimitedCounter::operator int() {
     return counter;
 }
+
+void LimitedCounter::SetObserver(CounterObserver *) {
+
+}

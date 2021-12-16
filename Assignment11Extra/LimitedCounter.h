@@ -12,6 +12,7 @@ public:
     void inc() override;
     void dec() override;
     operator int() override;
+    void SetObserver(CounterObserver *) override;
 
 private:
     int counter;
