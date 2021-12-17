@@ -14,6 +14,9 @@
 void car_sales();
 int main() {
     std::cout << "Hello, World!" << std::endl;
+    srand(time(NULL));
+    car_sales();
+
     return 0;
 }
 #if 0
