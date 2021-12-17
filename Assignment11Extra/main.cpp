@@ -21,9 +21,13 @@ int main() {
     UseCounter(lc2,4);
     cout << "OUTPUT: three times: \"The limit has been reached. Counter value is: 0\" \n";
     UseCounter(ofc2,10);
+    cout << "OUTPUT: one time: \"The limit has been reached. Counter value is: 0\" \n";
+    UseCounter(lc,-3);
+    cout << "OUTPUT: one time: \"The limit has been reached. Counter value is: 2\"\n";
+    UseCounter(ofc1,-3);
+
     return 0;
 }
-
 
 void UseCounter(Counter& ctr, int num) {
     while (num>0) {
@@ -35,3 +39,4 @@ void UseCounter(Counter& ctr, int num) {
         ++num;
     }
 }
+

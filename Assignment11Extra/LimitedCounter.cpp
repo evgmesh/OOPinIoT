@@ -17,8 +17,11 @@ void LimitedCounter::inc() {
 }
 
 void LimitedCounter::dec() {
-    if(counter > 0)
+    if(counter > 0) {
         --counter;
+    }
+    if(counter == 0)
+        Notify();
 }
 
 LimitedCounter::operator int() {

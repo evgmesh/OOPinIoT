@@ -16,7 +16,12 @@ void OverflowCounter::inc() {
 }
 
 void OverflowCounter::dec() {
-    counter > 0 ? --counter : counter = upperlim;
+    if(counter > 0) {
+     --counter;
+    } else {
+        counter = upperlim;
+        Notify();
+    }
 }
 
 OverflowCounter::operator int() {
