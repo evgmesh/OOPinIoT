@@ -10,6 +10,7 @@
 #include <iterator>
 #include <ctime>
 
+
 class Car {
 	friend std::ostream &operator<<(std::ostream &out, const Car &car);
 public:
@@ -45,12 +46,10 @@ class Website {
 public:
 	Website(const char *n = nullptr) : name(n ? n : "www.cars" + std::to_string(rand() % 99 + 1) + ".com") {}
 	~Website() { std::cout << name << " deleted" << std::endl; };
-	void advertise(std::shared_ptr<Car> car) {
-		listing.push_back(car); 
-	}
+	void advertise(std::shared_ptr<Car>car) { listing.push_back(car); }
 	void print(std::ostream &out = std::cout) { out << name << std::endl; for(auto car : listing) out << *car; out << name << " end of list" << std::endl;
 	}
-	//void remove(Car *car) { listing.erase(std::remove(listing.begin(), listing.end(), car),listing.end()); } 
+	void remove(std::shared_ptr<Car> car) { listing.erase(std::remove(listing.begin(), listing.end(), car),listing.end()); } 
 private:
 	std::vector<std::shared_ptr<Car>> listing;
 	std::string name;
@@ -63,21 +62,15 @@ public:
 	~Dealer() { std::cout << name << " deleted" << std::endl; };
 	void buy();
 	void sell();
-	//void add(Car *car) { cars.push_back(car); for (auto site : sites) site->advertise(car); }
-	//void add_site(Website *w) { sites.push_back(w); }
-	void add(std::shared_ptr<Car> car) {
-		cars.push_back(car);
-		for (auto site : sites) {
-			site->advertise(car);
-		}
-	}
-	void add_site(std::shared_ptr<Website> w) {
-		sites.push_back(w); 
-	}
+	void add(std::shared_ptr<Car>car) { 
+		cars.push_back(car); 
+		for (auto site : sites) 
+			site->advertise(car); }
+	void add_site(std::shared_ptr<Website>w) { sites.push_back(w); }
 private:
 	std::string name;
 	std::vector<std::shared_ptr<Car>> cars;
-	std::vector<std::shared_ptr<Website >> sites;
+	std::vector<std::shared_ptr<Website>> sites;
 };
 
 void Dealer::buy()
@@ -96,7 +89,7 @@ void Dealer::sell()
 	std::cin >> license;
 	auto ci = std::find_if(cars.begin(), cars.end(), [&license](std::shared_ptr<Car> c) {return license == c->GetLicense(); });
 	if (ci != cars.end()) {
-//		for (auto site : sites) //site->remove(*ci); // modify code wso that this is not needed
+		for (auto site : sites) site->remove(*ci); // modify code wso that this is not needed
 		cars.erase(ci);
 	}
 }
@@ -118,28 +111,15 @@ std::ostream & operator<<(std::ostream & out, const Dealer & dealer)
 void car_sales()
 {
 	std::cout << "Car sales started" << std::endl;
-
-	/*Website *wa = new Website("www.autos.com");
-	Website *wb = new Website("www.bilar.com");
-	Website *wc = new Website("www.cars.com");
-	Dealer *a = new Dealer("Alan Aldis");
-	Dealer *b = new Dealer("Bill Munny");*/
-
-	// Replace raw pointers with smart pointers
 	std::shared_ptr<Website> wa = std::make_shared<Website>("www.autos.com");
 	std::shared_ptr<Website> wb = std::make_shared<Website>("www.bilar.com");
 	std::shared_ptr<Website> wc = std::make_shared<Website>("www.cars.com");
-	std::shared_ptr<Dealer> a = std::make_shared<Dealer>("Alan Aldis");
-	std::shared_ptr<Dealer> b = std::make_shared<Dealer>("Bill Munny");
+	std::shared_ptr <Dealer> a = std::make_shared <Dealer>("Alan Aldis");
+	std::shared_ptr <Dealer> b = std::make_shared <Dealer>("Bill Munny");
 	{
-		/*Dealer *c = new Dealer("Casey Ball");
-		Car *ca = new Car;
-		Car *cb = new Car;*/
-
-		// Replace raw pointers with smart pointers
-		std::shared_ptr<Dealer> c = std::make_shared<Dealer>("Casey Ball");
-		std::shared_ptr<Car> ca = std::make_shared<Car>();
-		std::shared_ptr<Car> cb = std::make_shared<Car>();
+		std::shared_ptr <Dealer> c = std::make_shared <Dealer>("Casey Ball");
+		std::shared_ptr <Car> ca = std::make_shared <Car>();
+		std::shared_ptr <Car> cb = std::make_shared <Car>();
 
 		a->add_site(wa);
 		a->add_site(wb);
@@ -191,7 +171,7 @@ int main(int argc, char **argv) {
 	_CrtMemState s1;
 	_CrtMemCheckpoint(&s1);
 
-	srand(time(NULL));
+	srand(time(nullptr));
 
 	car_sales();
 
