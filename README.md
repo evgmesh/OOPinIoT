@@ -337,9 +337,9 @@ To make this work and see how it works in practice you need the following modifi
 Observer* obs;
 ```
 • Add function SetObserver, that sets the pointer member to point to any object that implements the Observer interface.
-`c++
+``c++
 void SetObserver(Observer *)
-`
+``
 
 • Add private function Notify, that informs the observer by calling the function
 HandleLimitReached() of the observer.
