@@ -16,11 +16,12 @@ Finally, the program must free the memory space it allocated.
 The program reads the whole xml-file [wheather.xml](weather.xml) into a single string object.<br>
 Develop the program further so that it finds and extracts specified items from the xml- string using start and end tags.<br>
 Now we find and extract and display first the location information and then the temperature information. 
-Location can be found between the tags \<location> and \</location>.<br> 
-The temperature is between the tags <temp_c> and </temp_c>.
-<br>To make it easy to find whatever information from the, xml-string write a 
+Location can be found between the tags \<location> and \</location>.
+The temperature is between the tags <temp_c> and </temp_c>.<br>
+To make it easy to find whatever information from the, xml-string write a 
 function that takes the xml-string and the "inner" text (same for start tag and end tag) of the tags as parameters and 
-returns the text from between the start tag and end tags. <br>If either start or end tag is not found the function must return "not found". <br>
+returns the text from between the start tag and end tags. <br>
+If either start or end tag is not found the function must return "not found". <br>
 Note that when you search for the tag you must search for the whole tag (including angle brackets) 
 not just the tag name that was given as parameter.<br>
 For example, if you wanted to find the location
@@ -91,10 +92,9 @@ and separates the fields with a colon.
 2. Comparison operator less than ( < ) that compares two times
 3. Addition operator ( + ) that adds two times
 4. Subtract operator ( - ) that subtracts two times.
-5. Pre and post increment operators ( ++ ). Both operators increment the time by one
+5. Pre- and post-increment operators ( ++ ). Both operators increment the time by one
    minute.
 
-Your class should work with the test program below. <br>
 Note that your class must have a default constructor that initializes time to 0:00.<br>
 Addition must make times to roll over to “next day” but doesn’t have to keep track of days. <br>
 For example, adding 14:30 and 13:45 should result in 4:15 or adding 18:30 and 5:37 should yield 0:07.
@@ -133,7 +133,8 @@ For example:<br>
 28 May 10:00 17:45*<br>
 In the example above there is one completely incorrect line (May 7th) that should be completely 
 ignored and one partially incorrect line (April 1st) where the last time is invalid and should be ignored.<br>
-**Member function to_str** returns a string of event times. <br>The format of the string is the same as from_str 
+**Member function to_str** returns a string of event times. <br>
+The format of the string is the same as from_str 
 input string format: day and month separated by spaces followed by a list of event times separated by spaces.<br>
 **Member function dst** adds an offset to times. 
 The offset is number of hours to add. Note that the function needs to roll time properly over 24:00 but it does not need to change the date on roll over.<br>
