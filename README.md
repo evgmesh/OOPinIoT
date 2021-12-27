@@ -94,7 +94,6 @@ and separates the fields with a colon.
 5. Pre and post increment operators ( ++ ). Both operators increment the time by one
    minute.
 
-
 Your class should work with the test program below. <br>
 Note that your class must have a default constructor that initializes time to 0:00.<br>
 Addition must make times to roll over to “next day” but doesn’t have to keep track of days. <br>
@@ -123,7 +122,7 @@ The function returns true if date and at least one event time was successfully r
 Function sorts the event times in ascending order before returning.<br>
 The string from which to read contains day and month separated by spaces and a list of events start times separated by spaces.<br>
 For example:<br>
-13 January 12:00 14:45<br>
+*13 January 12:00 14:45<br>
 14 January 09:00 11:30 13:15 16:00 12:00<br>
 1 February 19:00 21:30<br>
 2 February 12:00 14:45<br>
@@ -131,7 +130,7 @@ For example:<br>
 1 May 8:00 17:55<br>
 2 May 00:01 22:00 13:05<br>
 7 May Broken<br>
-28 May 10:00 17:45<br>
+28 May 10:00 17:45*<br>
 In the example above there is one completely incorrect line (May 7th) that should be completely 
 ignored and one partially incorrect line (April 1st) where the last time is invalid and should be ignored.<br>
 **Member function to_str** returns a string of event times. <br>The format of the string is the same as from_str 
@@ -140,7 +139,7 @@ input string format: day and month separated by spaces followed by a list of eve
 The offset is number of hours to add. Note that the function needs to roll time properly over 24:00 but it does not need to change the date on roll over.<br>
 Test your class with the following code and with different data files not just the one example provided in the assignment.<br>
 Example test output:<br>
-Calendar <br>
+*Calendar <br>
 13 January 12:00 14:45<br>
 14 January 09:00 11:30 12:00 13:15 16:00<br>
 1 February 19:00 21:30<br>
@@ -158,7 +157,7 @@ DST<br>
 1 May 09:00 18:55<br>
 2 May 01:01 14:05 23:00<br>
 28 May 11:00 18:45<br>
-End<br>
+End*<br>
 ## [Excercise 7 A](Assignment07) Function objects
 Produce random number generator class to create a lotto number generator:<br>
 Constructor takes two parameters that determine the range of numbers that the generator produces.<br>
@@ -177,7 +176,7 @@ Use set_intersection algorithm to find the numbers that appear in all three sets
    To print the numbers with index numbering you need to use a function object (can also be implemented with a lambda) 
 to remember the index between calls.<br>
 Example:<br>
-Lotto: 1 12 24 36 11 15 32<br>
+*Lotto: 1 12 24 36 11 15 32<br>
 Viking lotto: 24 7 11 18 35 1<br>
 Matching numbers:<br>
 1: 1<br>
@@ -186,7 +185,7 @@ Matching numbers:<br>
 Eurojackport: 47 1 40 24 4<br>
 Matching numbers in three sets:<br>
 1: 1<br>
-2: 24<br>
+2: 24*<br>
 After finding the matching numbers ask user if he/she wants to continue. <br>
 If the answer is yes then generate another three sets of lotto numbers.
 
@@ -216,7 +215,7 @@ When resistance is less than one ***identity()*** prints both real name and alia
 ***Set_identity*** sets the spy’s alias.<br>
 Note that you must override ***identity()*** and ***interrogate()*** in class Spy.<br>
 Example output for test program:<br>
-Nice to meet you. My name is: James Bond Who are you?<br>
+*Nice to meet you. My name is: James Bond Who are you?<br>
 My name is: William Johnson<br>
 Who are you?<br>
 My name is: William Johnson Who are you?<br>
@@ -242,7 +241,7 @@ My name is: Ernst Blofield<br>
 My alias is: John Keats<br>
 Who are you?<br>
 My name is: Ernst Blofield<br>
-My alias is: John Keats<br>
+My alias is: John Keats*
 
 ## [Excercise 9 A](Assignment09) Polymorphism
 
@@ -268,7 +267,7 @@ When vector has been filled program does the following:<br>
 3. Prints the object data
 
 Example output:<br>
-Coordinates: (1,1)<br>
+*Coordinates: (1,1)<br>
 Circle's area: 12.5664 Coordinates: (2,2) <br>
 Square's area: 4 Coordinates: (5,5) <br>
 Sorted:<br> 
@@ -287,7 +286,8 @@ Square:<br>
 Enter x:1.2 <br>
 Enter y:2.3 <br>
 Enter height: 3.4 <br>
-Enter width: 4.5<br>
+Enter width: 4.5*
+
 ## [Excercise 9 B](Assignment09) Extra
 
 Make program add five random objects to the vector. <br>
@@ -340,8 +340,8 @@ Observer* obs;
 ```c++
 void SetObserver(Observer *)
 ```
-• Add private function Notify, that informs the observer by calling the function
-HandleLimitReached() of the observer.<br>
+• Add private function ***Notify***, that informs the observer by calling the function
+***HandleLimitReached()*** of the observer.<br>
 Only one function is needed in the interface of the observer. 
 The function is called HandleLimitReached. <br>
 This function is used in a way to pass the message “Limit has been reached” from the OverflowCounter to the observer. <br>
@@ -357,5 +357,109 @@ It has an OverflowCounter as a data member and it implements the observer interf
 To keep the test class as simple as possible only the following member functions are necessary:<br>
 • Constructor where the limited counter is initialized with a limit value (5 for example).
 In the constructor body CounterUser object (“this”) is set as the observer of the OverflowCounter.<br>
-• IncrementBy, where counter is incremented n times, where n is passed as a parameter.<br>
-• HandleLimitReached() that displays that the limit has been reached.
+• ***IncrementBy***, where counter is incremented n times, where n is passed as a parameter.<br>
+• ***HandleLimitReached()*** that displays that the limit has been reached.
+Use the following test program where CounterUser object is declared, member function IncrementBy is called (with parameter value 12). <br>
+When you run the program, you should see the message “Limit reached” twice from the first counter user, because limit is 5 and number of increments is 12) and once from the second.
+```c++
+int main(){
+CounterUser cu(5);
+cu.IncrementBy(12); //OUTPUT: two times "Limit has been reached"
+CounterUser cu2(9);
+cu2.IncrementBy(9);
+cout << "Just passing time" << endl;
+cu2.IncrementBy(1); //OUTPUT: "Limit has been reached"
+}
+```
+## [Excercise 11](Assignment11Extra) Extra (Advanced version)
+Amend your Counter class by adding a member function to set Observer. <br>
+The implementations should use a vector to store pointers to counter observers and when limit is reached or overflow occurs the counter passes a pointer to itself as a parameter to the observer. <br>
+The observer then prints notification and the current counter value.
+```c++
+class Counter {
+public:
+virtual void inc() = 0;
+virtual void dec() = 0;
+virtual void SetObserver(CounterObserver *) = 0;
+virtual operator int() = 0;
+virtual ~Counter() {};
+};
+class CounterObserver {
+public:
+virtual void HandleLimitReached(Counter *ctr) = 0;
+};
+```
+Write a test program that creates two counters of both types and three observers. 
+Two observers to monitor a single counter each and one that monitors both.<br>
+Test your objects with UseCounter function from exercise 10. <br>
+Write a set of tests to verify that your counters and observers work correctly.
+
+## [Excercise 12](Assignment12) Exceptions
+Modify and improve the random number generator from the lecture slides (lecture7, page 27) to create a lotto number generator:<br>
+Constructor takes two parameters that determine the range of numbers that the generator produces. <br>
+The parameters are: upper and lower limit of the range. 
+Both values are included in the range. <br>
+For example: lower = 2, upper = 6 can produce following random numbers: 2, 3, 4, 5, 6.<br>
+The example generator used in the slides gets stuck in an infinite loop if all numbers in the range have already been used. <br>
+Improve the generator so that it throws runtime_error if all numbers in the range have already been used.<br>
+Write a test program to test your random number generator. <br>
+Function test_generator tries to generate requested number of unique random numbers. <br>
+Function catches exceptions and prints a message if an exception occurs. 
+Finally the program prints the generated random numbers.
+```c++
+void test_generator(UniqueRng ur, int count)
+int main(void) {
+UniqueRng randGen(5, 13);
+test_generator(randGen, 6);
+test_generator(randGen, 9);
+test_generator(randGen, 13);
+UniqueRng randGen2(1, 35);
+test_generator(randGen2, 7);
+test_generator(randGen2, 7);
+test_generator(randGen2, 7);
+test_generator(randGen2, 70);
+}
+```
+Example output (partial):<br>
+Generating numbers:<br>
+7<br>
+10<br>
+11<br>
+6<br>
+13<br>
+9<br>
+End of generator<br>
+Generating numbers:<br>
+9<br>
+6<br>
+10<br>
+8<br>
+13<br>
+12<br>
+5<br>
+7<br>
+11<br>
+End of generator<br>
+Generating numbers:<br>
+Exception: Unable to produce unique random number Tried to generate 13 random numbers. Got only 9<br>
+8<br>
+7<br>
+9<br>
+13<br>
+5<br>
+6<br>
+11<br>
+10<br>
+12<br>
+End of generator<br>
+
+## [Excercise 13](Assignment13) Smart pointers and pointer containers,
+Example program car_sales.cpp has a large number of memory leaks. <br>
+Your task is to fix the memory leaks. Replace all raw pointers with smart pointers (shared_ptr / weak_ptr) so that there is no need to call delete anywhere in the program.<br>
+Modify class Website in the following way:<br>
+• Delete remove() member function from the class<br>
+• Modify print() so that it deletes automatically all sold cars before printing the list of
+advertised cars
+#Extra excercise
+Add a (smart) pointer to Dealer in class Car so that when car information is printed the dealer name is also printed. <br>
+Note that this creates circular reference!
