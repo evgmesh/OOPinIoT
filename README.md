@@ -337,18 +337,25 @@ To make this work and see how it works in practice you need the following modifi
 Observer* obs;
 ```
 • Add function SetObserver, that sets the pointer member to point to any object that implements the Observer interface.
-``c++
+```c++
 void SetObserver(Observer *)
-``
-
+```
 • Add private function Notify, that informs the observer by calling the function
-HandleLimitReached() of the observer.
-Only one function is needed in the interface of the observer. The function is called HandleLimitReached. This function is used in a way to pass the message “Limit has been reached” from the OverflowCounter to the observer. This member function of observer is called from the member function Notify of the OverflowCounter.
+HandleLimitReached() of the observer.<br>
+Only one function is needed in the interface of the observer. 
+The function is called HandleLimitReached. <br>
+This function is used in a way to pass the message “Limit has been reached” from the OverflowCounter to the observer. <br>
+This member function of observer is called from the member function Notify of the OverflowCounter.
+```c++
 class Observer {
 public:
 virtual void HandleLimitReached() = 0;
 };
-To test the new version of OverflowCounter, write a class CounterUser, that uses an overflow counter. It has an OverflowCounter as a data member and it implements the observer interface. To keep the test class as simple as possible only the following member functions are necessary:
-• Constructor where the limited counter is initialized with a limit value (5 for example). In the constructor body CounterUser object (“this”) is set as the observer of the OverflowCounter.
-• IncrementBy, where counter is incremented n times, where n is passed as a parameter.
+```
+To test the new version of OverflowCounter, write a class CounterUser, that uses an overflow counter. <br>
+It has an OverflowCounter as a data member and it implements the observer interface. <br>
+To keep the test class as simple as possible only the following member functions are necessary:<br>
+• Constructor where the limited counter is initialized with a limit value (5 for example).
+In the constructor body CounterUser object (“this”) is set as the observer of the OverflowCounter.<br>
+• IncrementBy, where counter is incremented n times, where n is passed as a parameter.<br>
 • HandleLimitReached() that displays that the limit has been reached.
