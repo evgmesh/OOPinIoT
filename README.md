@@ -5,18 +5,18 @@ Write a program that first asks from the user how many numbers he needs. <br>
 After that the program allocates memory space to store those numbers (integer array). <br>
 Next the program fills the array with random numbers between 0 - 99, and the program displays all 
 numbers from the array. <br>
-After that the program calculates the mean of the generated number calling a separate function, int mean(int *array, int n).<br> 
-Finally the program must free the memory space it allocated.<br>
-There is rand() function for generating random numbers. 
-Limiting the range to [0,99] is done with rand() % 100. <br>
-In order to use rand() function you must include cstdlib header.
+After that the program calculates the mean of the generated number calling a separate function 
+```c++
+int mean(int *array, int n)
+```
+Finally, the program must free the memory space it allocated.
 
 ## [Excercise 2 A](Assignment02A.cpp) Using string class member functions
 
 The program reads the whole xml-file [wheather.xml](weather.xml) into a single string object.<br>
 Develop the program further so that it finds and extracts specified items from the xml- string using start and end tags.<br>
 Now we find and extract and display first the location information and then the temperature information. 
-Location can be found between the tags <location> and </location>.<br> 
+Location can be found between the tags \<location> and \</location>.<br> 
 The temperature is between the tags <temp_c> and </temp_c>.
 <br>To make it easy to find whatever information from the, xml-string write a 
 function that takes the xml-string and the "inner" text (same for start tag and end tag) of the tags as parameters and 
@@ -421,7 +421,7 @@ test_generator(randGen2, 70);
 }
 ```
 Example output (partial):<br>
-Generating numbers:<br>
+*Generating numbers:<br>
 7<br>
 10<br>
 11<br>
@@ -451,14 +451,14 @@ Exception: Unable to produce unique random number Tried to generate 13 random nu
 11<br>
 10<br>
 12<br>
-End of generator<br>
+End of generator*<br>
 
 ## [Excercise 13](Assignment13) Smart pointers and pointer containers,
 Example program car_sales.cpp has a large number of memory leaks. <br>
 Your task is to fix the memory leaks. Replace all raw pointers with smart pointers (shared_ptr / weak_ptr) so that there is no need to call delete anywhere in the program.<br>
 Modify class Website in the following way:<br>
-• Delete remove() member function from the class<br>
-• Modify print() so that it deletes automatically all sold cars before printing the list of
+• Delete ***remove()*** member function from the class<br>
+• Modify ***print()*** so that it deletes automatically all sold cars before printing the list of
 advertised cars
 #Extra excercise
 Add a (smart) pointer to Dealer in class Car so that when car information is printed the dealer name is also printed. <br>
