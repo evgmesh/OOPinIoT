@@ -84,7 +84,7 @@ As can be seen from the main function, class Time has the following member funct
 3. ***subtract*** that is used to calculate time difference between two times.
 4. ***display*** that is used to display time in the format hh:mm.
 
-## [Excercise 4](Assignment05) Implement operators
+## [Excercise 5](Assignment05) Implement operators
 Improve class you wrote in exercise 4 by adding overloaded operators. The operators to add are:<br>
 1. Output operator ( << ) that outputs the time in two character fields with leading zeros 
 and separates the fields with a colon.
@@ -99,3 +99,114 @@ Your class should work with the test program below. <br>
 Note that your class must have a default constructor that initializes time to 0:00.<br>
 Addition must make times to roll over to “next day” but doesn’t have to keep track of days. <br>
 For example, adding 14:30 and 13:45 should result in 4:15 or adding 18:30 and 5:37 should yield 0:07.
+
+## [Excercise 6 A](Assignment06) Implement more operators and a new constructor
+Improve class you wrote in exercise 4&5 by adding overloaded operators and by splitting it to header and source files.<br>
+The operators to add are:
+1. Input operator ( >> ) that extracts time from a stream. 
+2. The format of the time in the stream is assumed to be same as output (two numbers separated by a colon).
+3. Comparison operator greater than ( > ) that compares two times
+4. Comparison operator equal to ( == ) that compares two times
+5. Implement a constructor that takes hours and minutes as parameter
+
+Header should only contain class definition and possibly some includes required by the definition. <br>
+In the example below #pragma once is nowadays widely supported mechanism that works the same way as header guards after the pragma. <br>
+The header guards are used to prevent including same header multiple times. <br>
+Note that header should not contain any code that can be executed i.e. no function implementations.
+
+## [Excercise 6 B ](Assignment06) String streams
+Implement class Day to hold calendar events of one day. <br>
+**Member list** is used to store times of event on a day. Note that we don’t store event names only starting time of each event.<br>
+**Member function from_str** reads events from a string. 
+All existing data (date and event times) are erased by from_str before it makes an attempt to read data. <br>
+The function returns true if date and at least one event time was successfully read otherwise the function returns false.<br> 
+Function sorts the event times in ascending order before returning.<br>
+The string from which to read contains day and month separated by spaces and a list of events start times separated by spaces.<br>
+For example:<br>
+13 January 12:00 14:45<br>
+14 January 09:00 11:30 13:15 16:00 12:00<br>
+1 February 19:00 21:30<br>
+2 February 12:00 14:45<br>
+1 April 10:00 11: Broken<br>
+1 May 8:00 17:55<br>
+2 May 00:01 22:00 13:05<br>
+7 May Broken<br>
+28 May 10:00 17:45<br>
+In the example above there is one completely incorrect line (May 7th) that should be completely 
+ignored and one partially incorrect line (April 1st) where the last time is invalid and should be ignored.<br>
+**Member function to_str** returns a string of event times. <br>The format of the string is the same as from_str 
+input string format: day and month separated by spaces followed by a list of event times separated by spaces.<br>
+**Member function dst** adds an offset to times. 
+The offset is number of hours to add. Note that the function needs to roll time properly over 24:00 but it does not need to change the date on roll over.<br>
+Test your class with the following code and with different data files not just the one example provided in the assignment.<br>
+Example test output:<br>
+Calendar <br>
+13 January 12:00 14:45<br>
+14 January 09:00 11:30 12:00 13:15 16:00<br>
+1 February 19:00 21:30<br>
+2 February 12:00 14:45<br>
+1 April 10:00<br>
+1 May 08:00 17:55<br>
+2 May 00:01 13:05 22:00<br>
+28 May 10:00 17:45<br>
+DST<br>
+13 January 13:00 15:45<br>
+14 January 10:00 12:30 13:00 14:15 17:00<br>
+1 February 20:00 22:30<br>
+2 February 13:00 15:45<br>
+1 April 11:00<br>
+1 May 09:00 18:55<br>
+2 May 01:01 14:05 23:00<br>
+28 May 11:00 18:45<br>
+End<br>
+## [Excercise 7 A](Assignment07) Function objects
+Produce random number generator class to create a lotto number generator:<br>
+Constructor takes two parameters that determine the range of numbers that the generator produces.<br>
+Write a program that generates numbers for three different games:<br>
+
+1. Lotto: 7 numbers 1 – 40
+2. Viking lotto: 6 numbers 1 – 48
+3. Eurojackpot: 5 numbers 1 – 50
+   
+Use either generate or generate_n algorithm to generate the three sets of numbers.<br>
+Print each set of numbers using a suitable algorithm and output stream iterator.<br>
+Then find numbers that appear in all three sets and print them. <br>
+Use set_intersection algorithm to find the numbers that appear in all three sets:<br>
+   • Find matching numbers from two sets and print them using for_each algorithm<br>
+   • Find matching number from the third set and print them using for_each algorithm<br>
+   To print the numbers with index numbering you need to use a function object (can also be implemented with a lambda) 
+to remember the index between calls.<br>
+Example:<br>
+Lotto: 1 12 24 36 11 15 32<br>
+Viking lotto: 24 7 11 18 35 1<br>
+Matching numbers:<br>
+1: 1<br>
+2: 11<br>
+3: 24<br>
+Eurojackport: 47 1 40 24 4<br>
+Matching numbers in three sets:<br>
+1: 1<br>
+2: 24<br>
+After finding the matching numbers ask user if he/she wants to continue. <br>
+If the answer is yes then generate another three sets of lotto numbers.
+
+## [Excercise 8 A](Assignment08) Inheritance
+In this exercise we define a Person class that simply holds a person’s name and prints it when needed. <br>
+We derive a Spy class from Person and add member function that can be used to set an alias for the spy. <br>
+Use the following definition for Person class.
+```c++
+class Person {
+public:
+Person(const char *name = "nobody"); virtual ~Person() = default;
+virtual void identity() const; virtual void interrogate();
+private:
+std::string name;
+};
+```
+Identity() prints the name of the person.
+Interrogate() does nothing (empty body) in class Person.
+Derive Spy from Person and the following function:
+void set_identity(const char *alias);
+Spy constructor must take three parameters: name of the spy, alias of the spy, and resistance. Resistance is an integer that represents spy’s resistance to interrogation. Every time interrogate() is called resistance is decremented by one. When resistance is greater than zero identity() prints alias of the spy instead of the real name. When resistance is less than one identity() prints both real name and alias of the spy.
+Set_identity sets the spy’s alias.
+Note that you must override indentity() and interrogate() in class Spy.
