@@ -197,16 +197,130 @@ Use the following definition for Person class.
 ```c++
 class Person {
 public:
-Person(const char *name = "nobody"); virtual ~Person() = default;
-virtual void identity() const; virtual void interrogate();
+Person(const char *name = "nobody"); 
+virtual ~Person() = default;
+virtual void identity() const; 
+virtual void interrogate();
 private:
 std::string name;
 };
 ```
-Identity() prints the name of the person.
-Interrogate() does nothing (empty body) in class Person.
-Derive Spy from Person and the following function:
-void set_identity(const char *alias);
-Spy constructor must take three parameters: name of the spy, alias of the spy, and resistance. Resistance is an integer that represents spy’s resistance to interrogation. Every time interrogate() is called resistance is decremented by one. When resistance is greater than zero identity() prints alias of the spy instead of the real name. When resistance is less than one identity() prints both real name and alias of the spy.
-Set_identity sets the spy’s alias.
-Note that you must override indentity() and interrogate() in class Spy.
+***Identity()*** prints the name of the person.
+***Interrogate()*** does nothing (empty body) in class Person.
+Derive Spy from Person and the following function:<br>
+```c++ void set_identity(const char *alias); ``` <br>
+Spy constructor must take three parameters: name of the spy, alias of the spy, and resistance. <br>
+Resistance is an integer that represents spy’s resistance to interrogation. Every time ***interrogate()*** is called resistance is decremented by one.<br> 
+When resistance is greater than zero ***identity()*** prints alias of the spy instead of the real name. <br>
+When resistance is less than one ***identity()*** prints both real name and alias of the spy.<br>
+***Set_identity*** sets the spy’s alias.<br>
+Note that you must override ***identity()*** and ***interrogate()*** in class Spy.<br>
+Example output for test program:<br>
+Nice to meet you. My name is: James Bond Who are you?<br>
+My name is: William Johnson<br>
+Who are you?<br>
+My name is: William Johnson Who are you?<br>
+My name is: Emilio Largo<br>
+My alias is: William Johnson Who are you?<br>
+My name is: Emilio Largo<br>
+My alias is: William Johnson Who are you?<br>
+My name is: Emilio Largo<br>
+My alias is: William Johnson Who are you?<br>
+My name is: Emilio Largo<br>
+My alias is: William Johnson My name is: Emilio Largo<br>
+My alias is: Bill Munny<br>
+Nice to meet you. My name is: James Bond Who are you?<br>
+My name is: John Keats<br>
+Who are you?<br>
+My name is: John Keats<br>
+Who are you?<br>
+My name is: John Keats<br>
+Who are you?<br>
+My name is: John Keats<br>
+Who are you?<br>
+My name is: Ernst Blofield<br>
+My alias is: John Keats<br>
+Who are you?<br>
+My name is: Ernst Blofield<br>
+My alias is: John Keats<br>
+
+## [Excercise 9 A](Assignment09) Polymorphism
+
+Derive two classes from class Point:<br>
+1. Circle: add radius
+2. Square: add width and height.
+   
+All derived classes must implement all virtual functions and define constructors that take 2 – 4 values as parameter 
+depending on the class. <br>
+All parameters must have a default value.<br>
+Write a program that defines a vector of shared pointers to the base class. <br>
+Then program puts the following objects into vector:<br>
+• Point with coordinates (1.0, 1.0)<br>
+• Circle at (2.0, 2.0) with radius 2.0<br>
+• Square at (5.0, 5.0) with width and height of 2.0<br>
+• Square whose data is asked from user before adding to the vector<br>
+• Circle whose data is asked from user before adding to the vector<br>
+• Point whose data is asked from user before adding to the vector
+
+When vector has been filled program does the following:<br>
+1. Prints the object data
+2. Sorts the vector by area
+3. Prints the object data
+
+Example output:<br>
+Coordinates: (1,1)<br>
+Circle's area: 12.5664 Coordinates: (2,2) <br>
+Square's area: 4 Coordinates: (5,5) <br>
+Sorted:<br> 
+Coordinates: (1,1)<br>
+Square's area: 4 Coordinates: (5,5) <br>
+Circle's area: 12.5664 Coordinates: (2,2)<br>
+Example output of calls to input():<br>
+Point:<br>
+Enter x:2.3 <br>
+Enter y:5.7 <br>
+Circle:<br>
+Enter x:3.4 <br>
+Enter y:4.5 <br>
+Enter radius: 6.7 <br>
+Square:<br>
+Enter x:1.2 <br>
+Enter y:2.3 <br>
+Enter height: 3.4 <br>
+Enter width: 4.5<br>
+## [Excercise 9 B](Assignment09) Extra
+
+Make program add five random objects to the vector. <br>
+The object data must be asked from user before adding the object to the vector.
+
+## [Excercise 10](Assignment10) Abstract class
+In this exercise you need to derive two classes from an abstract class and write a function that helps in testing the classes. <br>
+Your starting point is an abstract class called Counter that defines an interface for incrementing and decrementing a counter 
+and a conversion operator that can be used to read or print the current counter value.
+
+
+Derive a class called LimitedCounter.<br>
+• The constructor takes two parameters: initial value and upper limit<br>
+• Counter can’t be incremented over the upper limit. If inc() is called when counter
+has reached the upper limit nothing happens<br>
+• Counter can’t be decremented below zero. If counter is zero then calling dec() will
+have no effect
+
+
+Derive a class called OverflowCounter.<br>
+• The constructor takes two parameters: initial value and upper limit<br>
+• When counter has reached the upper limit incrementing the value will set the
+counter to zero.<br>
+• When counter is zero decrementing the counter sets counter to upper limit.
+
+
+Implement function called UseCounter.<br>
+•   ``` void UseCounter(Counter& ctr, int num);```<br>
+• Function takes two parameters: a reference to Counter and number that tells
+how many times the counter should be incremented or decremented. 
+A negative value decrements counter and positive value increments counter.
+
+
+Test your counters with different values and ways. 
+Pay attention to the limits and make sure that they work properly.<br>
+Use the attached code as starting point.
