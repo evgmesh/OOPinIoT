@@ -208,7 +208,7 @@ std::string name;
 ***Identity()*** prints the name of the person.
 ***Interrogate()*** does nothing (empty body) in class Person.
 Derive Spy from Person and the following function:<br>
-```c++ void set_identity(const char *alias); ``` <br>
+```void set_identity(const char *alias); ``` <br>
 Spy constructor must take three parameters: name of the spy, alias of the spy, and resistance. <br>
 Resistance is an integer that represents spy’s resistance to interrogation. Every time ***interrogate()*** is called resistance is decremented by one.<br> 
 When resistance is greater than zero ***identity()*** prints alias of the spy instead of the real name. <br>
@@ -313,14 +313,42 @@ Derive a class called OverflowCounter.<br>
 counter to zero.<br>
 • When counter is zero decrementing the counter sets counter to upper limit.
 
-
-Implement function called UseCounter.<br>
-•   ``` void UseCounter(Counter& ctr, int num);```<br>
-• Function takes two parameters: a reference to Counter and number that tells
-how many times the counter should be incremented or decremented. 
+Implement function called UseCounter.
+```c++
+void UseCounter(Counter& ctr, int num);
+```
+Function takes two parameters: a reference to Counter and number that tells
+how many times the counter should be incremented or decremented. <br>
 A negative value decrements counter and positive value increments counter.
 
 
 Test your counters with different values and ways. 
-Pay attention to the limits and make sure that they work properly.<br>
-Use the attached code as starting point.
+Pay attention to the limits and make sure that they work properly.
+
+## [Excercise 11](Assignment11) Observer pattern
+Modify the class OverflowCounter of execise 10 so that it informs a single observer, when an overflow has occurred. <br>
+The Observer is an interface class that any class can implement, if it wants to be informed about an overflow. <br>
+Usually this class is a class that uses the counter. <br>
+The advantage of this pattern is that when the OverflowCounter class has been implemented and tested, it does not need any modification even when we use it from any kind of “counter user objects”. <br>
+Only thing we need to do to get our counter user class to be informed is to implement the Observer interface in the counter user class.<br>
+To make this work and see how it works in practice you need the following modifications to the OverflowCounter class:<br>
+• Add a data member that points to the Observer interface class.
+```c++
+Observer* obs;
+```
+• Add function SetObserver, that sets the pointer member to point to any object that implements the Observer interface.
+`c++
+void SetObserver(Observer *)
+`
+
+• Add private function Notify, that informs the observer by calling the function
+HandleLimitReached() of the observer.
+Only one function is needed in the interface of the observer. The function is called HandleLimitReached. This function is used in a way to pass the message “Limit has been reached” from the OverflowCounter to the observer. This member function of observer is called from the member function Notify of the OverflowCounter.
+class Observer {
+public:
+virtual void HandleLimitReached() = 0;
+};
+To test the new version of OverflowCounter, write a class CounterUser, that uses an overflow counter. It has an OverflowCounter as a data member and it implements the observer interface. To keep the test class as simple as possible only the following member functions are necessary:
+• Constructor where the limited counter is initialized with a limit value (5 for example). In the constructor body CounterUser object (“this”) is set as the observer of the OverflowCounter.
+• IncrementBy, where counter is incremented n times, where n is passed as a parameter.
+• HandleLimitReached() that displays that the limit has been reached.
