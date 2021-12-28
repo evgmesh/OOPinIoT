@@ -1,4 +1,4 @@
-# OOPinIoT
+# Object-Oriented Programming in IoT Devices
 
 ## [Excercise 1](Assignment01.cpp)<br>
 Write a program that first asks from the user how many numbers he needs. <br>
