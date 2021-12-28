@@ -336,11 +336,11 @@ Only thing we need to do to get our counter user class to be informed is to impl
 To make this work and see how it works in practice you need the following modifications to the OverflowCounter class:<br>
 • Add a data member that points to the Observer interface class.
 ```c++
-Observer* obs;
+   Observer* obs;
 ```
 • Add function SetObserver, that sets the pointer member to point to any object that implements the Observer interface.
 ```c++
-void SetObserver(Observer *)
+   void SetObserver(Observer *)
 ```
 • Add private function ***Notify***, that informs the observer by calling the function
 ***HandleLimitReached()*** of the observer.<br>
