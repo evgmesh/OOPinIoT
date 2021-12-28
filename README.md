@@ -53,7 +53,7 @@ Write a function called backwards that takes a reference to a vector of strings 
 The function reverses all strings in the vector and then sorts the vector in descending order.<br>
 Write a program that reads strings from the keyboard. There is no upper limit for the number of strings. <br>
 All strings are stored in a vector of strings. 
-The data entry phase terminates when the user enters the “stop” string. <br>
+The data entry phase terminates when the user enters the “stop” string.
 This termination string is not stored in the vector.<br>
 When all strings have been entered the program prints the vector elements on separate lines. <br>
 Then program calls backwards and passes the vector as parameter. After the call the program prints the vector again.
@@ -167,8 +167,7 @@ Write a program that generates numbers for three different games:<br>
 1. Lotto: 7 numbers 1 – 40
 2. Viking lotto: 6 numbers 1 – 48
 3. Eurojackpot: 5 numbers 1 – 50
-   
-Use either generate or generate_n algorithm to generate the three sets of numbers.<br>
+
 Print each set of numbers using a suitable algorithm and output stream iterator.<br>
 Then find numbers that appear in all three sets and print them. <br>
 Use set_intersection algorithm to find the numbers that appear in all three sets:<br>
@@ -207,8 +206,10 @@ std::string name;
 ```
 ***Identity()*** prints the name of the person.
 ***Interrogate()*** does nothing (empty body) in class Person.
-Derive Spy from Person and the following function:<br>
-```void set_identity(const char *alias); ``` <br>
+Derive Spy from Person and the following function:
+```c++
+    void set_identity(const char *alias);
+```
 Spy constructor must take three parameters: name of the spy, alias of the spy, and resistance. <br>
 Resistance is an integer that represents spy’s resistance to interrogation. Every time ***interrogate()*** is called resistance is decremented by one.<br> 
 When resistance is greater than zero ***identity()*** prints alias of the spy instead of the real name. <br>

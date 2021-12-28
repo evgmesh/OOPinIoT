@@ -3,4 +3,4 @@ project(Contacts)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Contacts main.cpp Person.cpp Person.h)
+add_executable(Contacts main.cpp Person.cpp Person.h Contacts.cpp Contacts.h)

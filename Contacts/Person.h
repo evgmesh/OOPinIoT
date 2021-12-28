@@ -5,12 +5,13 @@
 #ifndef CONTACTS_PERSON_H
 #define CONTACTS_PERSON_H
 
+#include <iostream>
 
 class Person {
 public:
 
 private:
-
+std::string name;
 };
 
 
