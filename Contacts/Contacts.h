@@ -7,6 +7,9 @@
 
 
 class Contacts {
+public:
+
+private:
 
 };
 
