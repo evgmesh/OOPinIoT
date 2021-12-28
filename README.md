@@ -336,11 +336,11 @@ Only thing we need to do to get our counter user class to be informed is to impl
 To make this work and see how it works in practice you need the following modifications to the OverflowCounter class:<br>
 • Add a data member that points to the Observer interface class.
 ```c++
-Observer* obs;
+   Observer* obs;
 ```
 • Add function SetObserver, that sets the pointer member to point to any object that implements the Observer interface.
 ```c++
-void SetObserver(Observer *)
+   void SetObserver(Observer *)
 ```
 • Add private function ***Notify***, that informs the observer by calling the function
 ***HandleLimitReached()*** of the observer.<br>
@@ -409,17 +409,17 @@ Function test_generator tries to generate requested number of unique random numb
 Function catches exceptions and prints a message if an exception occurs. 
 Finally the program prints the generated random numbers.
 ```c++
-void test_generator(UniqueRng ur, int count)
+void test_generator(UniqueRng ur, int count);
 int main(void) {
-UniqueRng randGen(5, 13);
-test_generator(randGen, 6);
-test_generator(randGen, 9);
-test_generator(randGen, 13);
-UniqueRng randGen2(1, 35);
-test_generator(randGen2, 7);
-test_generator(randGen2, 7);
-test_generator(randGen2, 7);
-test_generator(randGen2, 70);
+   UniqueRng randGen(5, 13);
+   test_generator(randGen, 6);
+   test_generator(randGen, 9);
+   test_generator(randGen, 13);
+   UniqueRng randGen2(1, 35);
+   test_generator(randGen2, 7);
+   test_generator(randGen2, 7);
+   test_generator(randGen2, 7);
+   test_generator(randGen2, 70);
 }
 ```
 Example output (partial):<br>
