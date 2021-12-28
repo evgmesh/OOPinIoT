@@ -409,17 +409,17 @@ Function test_generator tries to generate requested number of unique random numb
 Function catches exceptions and prints a message if an exception occurs. 
 Finally the program prints the generated random numbers.
 ```c++
-void test_generator(UniqueRng ur, int count)
+void test_generator(UniqueRng ur, int count);
 int main(void) {
-UniqueRng randGen(5, 13);
-test_generator(randGen, 6);
-test_generator(randGen, 9);
-test_generator(randGen, 13);
-UniqueRng randGen2(1, 35);
-test_generator(randGen2, 7);
-test_generator(randGen2, 7);
-test_generator(randGen2, 7);
-test_generator(randGen2, 70);
+   UniqueRng randGen(5, 13);
+   test_generator(randGen, 6);
+   test_generator(randGen, 9);
+   test_generator(randGen, 13);
+   UniqueRng randGen2(1, 35);
+   test_generator(randGen2, 7);
+   test_generator(randGen2, 7);
+   test_generator(randGen2, 7);
+   test_generator(randGen2, 70);
 }
 ```
 Example output (partial):<br>
