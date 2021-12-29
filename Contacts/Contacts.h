@@ -8,9 +8,13 @@
 #include "Person.h"
 
 class Contacts {
+    friend std::istream &operator>>(std::istream &in, Person &person);
+
 public:
     int getAction() const;
     void start();
+    void addContact();
+    void printAll();
 private:
     std::vector<Person> contacts;
 };

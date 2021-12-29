@@ -10,11 +10,15 @@
 #include <vector>
 
 class Person {
+    friend std::ostream &operator<<(std::ostream &out, const Person &person);
 public:
     Person(const char *name_ = "", const char *email_ = "", const char *phone_ = "", const char *city_ = "");
     Person(const char *name_, const char *email_, const char *phone_, const char *city_, Person &person_);
     ~Person();
-    void Print();
+    void setName(std::string &n);
+    void setEmail(std::string &n);
+    void setPhone(std::string &n);
+    void setCity(std::string &n);
 private:
     std::string name;
     std::string email;

@@ -18,10 +18,30 @@ Person::~Person() {
     if(relative) relative = nullptr;
 }
 
-void Person::Print() {
-    std::cout << std::left << std::setw(15) << name << " | "
-        << std::left << std::setw(15) << email << " | "
-        << std::left << std::setw(15) << phone << " | "
-        << std::left << std::setw(15) << city;
-    relative ? std::cout << std::left << std::setw(15) << relative->name << std::endl : std::cout << std::endl;
+std::ostream &operator<<(std::ostream &out, const Person &person) {
+    out << std::left << std::setw(15) <<person.name << " | "
+             << std::left << std::setw(15) << person.email << " | "
+             << std::left << std::setw(15) << person.phone << " | "
+             << std::left << std::setw(15) << person.city;
+    person.relative ? std::cout << std::left << std::setw(15) << person.relative->name << std::endl : std::cout << std::endl;
+
+    return out;
 }
+
+
+void Person::setName(std::string &n) {
+    name = n;
+}
+
+void Person::setEmail(std::string &n) {
+    email = n;
+}
+
+void Person::setPhone(std::string &n) {
+    phone = n;
+}
+
+void Person::setCity(std::string &n) {
+    city = n;
+}
+
