@@ -41,8 +41,8 @@ int Contacts::getAction() const{
 
 void Contacts::start(){
     enum {INIT = 1, SAVE, READ, ADD, REMOVE, FIND, PRINT, EXIT};
+    int choice(0);
     try {
-        int choice(0);
         while (choice != EXIT) {
             choice = getAction();
             if(choice == INIT)
@@ -50,7 +50,7 @@ void Contacts::start(){
             if(choice == SAVE)
                 Contacts::save();
             if(choice == READ)
-                std::cout << "Read"<< std::endl;
+                Contacts::read();
             if(choice == ADD)
                 Contacts::addContact();
             if(choice == REMOVE)
@@ -72,6 +72,7 @@ void Contacts::printAll() {
     if(contacts.empty())
         throw(std::runtime_error("contact list is empty. "
                                  "Try to add at least one person.\nProgram finished."));
+
     for(auto &c : contacts)
         std::cout << c;
     std::cout << std::endl;
@@ -95,27 +96,30 @@ void Contacts::remove() {
 }
 
 void Contacts::save() {
-    std::ofstream write;
-    write.open("../Contacts.txt", std::ios_base::out | std::ios_base::trunc);
-    if(write.is_open()) {
-        write << "Test text\n Next line\n";
+    std::ofstream outputFile;
+    outputFile.open("../Contacts.txt", std::ios_base::out | std::ios_base::trunc);
+    if(outputFile.is_open()) {
         for(auto &c : contacts)
-            write << c;
-    }
-    else
+            outputFile.write((char *) &c, sizeof (c));
+//            outputFile << c;
+    } else
         throw(std::runtime_error("can't open a file, check file name.\nProgram finished."));
-    write.close();
+    outputFile.close();
 }
 
 void Contacts::read() {
-    std::ifstream read;
-    read.open("../Contacts.txt", std::ios_base::in);
-    if(read.is_open()) {
-
-    }
-    else
+    contacts.clear();
+    std::ifstream inputFile;
+    inputFile.open("../Contacts.txt", std::ios_base::in);
+    Person p;
+    if(inputFile.is_open()) {
+        while (inputFile.read((char *) &p, sizeof (p))) {
+//            inputFile.read((char *) &p, sizeof (p));
+            contacts.push_back(p);
+        }
+    } else
         throw(std::runtime_error("can't open a file, check file name.\nProgram finished."));
-    read.close();
+    inputFile.close();
 }
 
 
