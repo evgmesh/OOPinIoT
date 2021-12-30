@@ -6,6 +6,7 @@
 #define CONTACTS_CONTACTS_H
 
 #include "Person.h"
+#include <fstream>
 
 class Contacts {
     friend std::istream &operator>>(std::istream &in, Person &person);
@@ -16,6 +17,8 @@ public:
     void addContact();
     void printAll();
     void remove();
+    void save();
+    void read();
 private:
     std::vector<Person> contacts;
 };

@@ -48,7 +48,7 @@ void Contacts::start(){
             if(choice == INIT)
                 std::cout << "Init"<< std::endl;
             if(choice == SAVE)
-                std::cout << "Save"<< std::endl;
+                Contacts::save();
             if(choice == READ)
                 std::cout << "Read"<< std::endl;
             if(choice == ADD)
@@ -70,7 +70,7 @@ void Contacts::start(){
 void Contacts::printAll() {
     std::cout << std::endl;
     if(contacts.empty())
-        throw(std::runtime_error("Contact list is empty. "
+        throw(std::runtime_error("contact list is empty. "
                                  "Try to add at least one person.\nProgram finished."));
     for(auto &c : contacts)
         std::cout << c;
@@ -85,13 +85,37 @@ void Contacts::remove() {
     auto p = std::find_if(contacts.begin(), contacts.end(),
                           [&name](Person person)->bool {return name == person.getName();});
     if(p == contacts.end()) {
-        throw(std::runtime_error("Person can't be found. This person doesn't exist in contact list or"
+        throw(std::runtime_error("person can't be found. This person doesn't exist in contact list or"
                                  " check your entry for typo.\nProgram finished."));
     }
     else {
         contacts.erase(p);
         std::cout << name << " has been removed successfully!"  << std::endl;
     }
+}
+
+void Contacts::save() {
+    std::ofstream write;
+    write.open("../Contacts.txt", std::ios_base::out | std::ios_base::trunc);
+    if(write.is_open()) {
+        write << "Test text\n Next line\n";
+        for(auto &c : contacts)
+            write << c;
+    }
+    else
+        throw(std::runtime_error("can't open a file, check file name.\nProgram finished."));
+    write.close();
+}
+
+void Contacts::read() {
+    std::ifstream read;
+    read.open("../Contacts.txt", std::ios_base::in);
+    if(read.is_open()) {
+
+    }
+    else
+        throw(std::runtime_error("can't open a file, check file name.\nProgram finished."));
+    read.close();
 }
 
 
