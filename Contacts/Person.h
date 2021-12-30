@@ -19,6 +19,7 @@ public:
     void setEmail(std::string &n);
     void setPhone(std::string &n);
     void setCity(std::string &n);
+    std::string getName();
 private:
     std::string name;
     std::string email;

@@ -45,3 +45,7 @@ void Person::setCity(std::string &n) {
     city = n;
 }
 
+std::string Person::getName() {
+    return name;
+}
+

@@ -54,7 +54,7 @@ void Contacts::start(){
             if(choice == ADD)
                 Contacts::addContact();
             if(choice == REMOVE)
-                std::cout << "Remove"<< std::endl;
+                Contacts::remove();
             if(choice == FIND)
                 std::cout << "Find"<< std::endl;
             if(choice == PRINT)
@@ -75,6 +75,23 @@ void Contacts::printAll() {
     for(auto &c : contacts)
         std::cout << c;
     std::cout << std::endl;
+}
+
+void Contacts::remove() {
+    std::string name;
+    std::cout << "\nWARNING, this is permanent action. Removal can't undo\n"
+                <<"Please enter name of person to be removed: ";
+    std::cin >> name;
+    auto p = std::find_if(contacts.begin(), contacts.end(),
+                          [&name](Person person)->bool {return name == person.getName();});
+    if(p == contacts.end()) {
+        throw(std::runtime_error("Person can't be found. This person doesn't exist in contact list or"
+                                 " check your entry for typo.\nProgram finished."));
+    }
+    else {
+        contacts.erase(p);
+        std::cout << name << " has been removed successfully!"  << std::endl;
+    }
 }
 
 

@@ -15,6 +15,7 @@ public:
     void start();
     void addContact();
     void printAll();
+    void remove();
 private:
     std::vector<Person> contacts;
 };
