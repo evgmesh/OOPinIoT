@@ -20,8 +20,8 @@ public:
     void setEmail(std::string &n);
     void setPhone(std::string &n);
     void setCity(std::string &n);
-    std::string getName();
-    std::string getCity();
+    std::string getName() const;
+    std::string getCity() const;
 private:
     std::string name;
     std::string email;

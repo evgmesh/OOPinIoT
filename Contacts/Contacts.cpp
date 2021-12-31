@@ -28,8 +28,6 @@ void Contacts::addContact(){
 }
 
 
-
-
 int Contacts::getAction() const{
     menu();
     int choice(0);
@@ -46,20 +44,28 @@ void Contacts::start(){
     try {
         while (choice != EXIT) {
             choice = getAction();
+
             if(choice == INIT)
                 std::cout << "Init"<< std::endl;
+
             if(choice == SAVE)
                 Contacts::save();
+
             if(choice == READ)
                 Contacts::read();
+
             if(choice == ADD)
                 Contacts::addContact();
+
             if(choice == REMOVE)
                 Contacts::remove();
+
             if(choice == FIND)
-                std::cout << "Find"<< std::endl;
+                Contacts::find();
+
             if(choice == PRINT)
                 Contacts::printAll();
+
             if(choice == EXIT)
                 std::cout << "Bye-bye!" << std::endl;
         }
@@ -79,20 +85,22 @@ void Contacts::printAll() const {
     std::cout << std::endl;
 }
 
+// Removes all contacts with given name. Think about giving options if more than one person is found
 void Contacts::remove() {
     std::string name;
+    bool removed = false;
     std::cout << "\nWARNING, this is permanent action. Removal can't undo\n"
                 <<"Please enter name of person to be removed: ";
     std::cin >> name;
-    auto p = std::find_if(contacts.begin(), contacts.end(),
-                          [&name](Person person)->bool {return name == person.getName();});
-    if(p == contacts.end()) {
-        throw(std::runtime_error("person can't be found. This person doesn't exist in contact list or"
-                                 " check your entry for typo.\nProgram finished."));
-    }
-    else {
-        contacts.erase(p);
-        std::cout << name << " has been removed successfully!"  << std::endl;
+    for (auto it = contacts.begin(); it <= contacts.end(); ++it ) {
+        if (it->getName() == name) {
+            removed = true;
+            contacts.erase(it);
+            std::cout << name << " has been removed successfully!"  << std::endl;
+        }
+        else if (!removed && it == contacts.end())
+            throw(std::runtime_error("can't find contact with given city, person doesn't exist in "
+                                     "contact list or check your entry for typo.\nProgram finished."));
     }
 }
 
@@ -126,6 +134,24 @@ void Contacts::read() {
     inputFile.close();
 }
 
+// I don't like for loop in here (extra bool variable). Need to change to better solution
+void Contacts::find() const{
+    std::string city{};
+    bool found = false;
+    std::cout << "Enter city: ";
+    std::getline(std::cin, city);
+    for (auto it = contacts.begin(); it <= contacts.end(); ++it ) {
+        if (it->getCity() == city) {
+            std::cout << *it;
+            found = true;
+        }
+        else if (!found && it == contacts.end())
+            throw(std::runtime_error("can't find contact with given city, person doesn't exist in "
+                                     "contact list or check your entry for typo.\nProgram finished."));
+    }
+
+}
+
 
 void menu() {
     std::cout << "******************MENU:******************\n"
@@ -139,3 +165,25 @@ void menu() {
               << "8. EXIT PROGRAM\n"
               << "Please, choose an action providing corresponding number: ";
 }
+
+
+
+
+#if 0
+// Alternate version of remove
+void Contacts::remove() {
+    std::string name;
+    std::cout << "\nWARNING, this is permanent action. Removal can't undo\n"
+                <<"Please enter name of person to be removed: ";
+    std::cin >> name;
+    auto p = std::find_if(contacts.begin(), contacts.end(),
+                          [&name](Person person)->bool {return name == person.getName();});
+    if(p == contacts.end()) {
+        throw(std::runtime_error("person can't be found. This person doesn't exist in contact list or"
+                                 " check your entry for typo.\nProgram finished."));
+    } else {
+        contacts.erase(p);
+        std::cout << name << " has been removed successfully!"  << std::endl;
+    }
+}
+#endif

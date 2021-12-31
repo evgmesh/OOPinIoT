@@ -20,6 +20,7 @@ private:
     void remove();
     void save();
     void read();
+    void find() const;
     std::vector<Person> contacts;
 };
 

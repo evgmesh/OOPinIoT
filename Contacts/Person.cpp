@@ -45,11 +45,11 @@ void Person::setCity(std::string &n) {
     city = n;
 }
 
-std::string Person::getName() {
+std::string Person::getName() const{
     return name;
 }
 
-std::string Person::getCity() {
+std::string Person::getCity() const{
     return city;
 }
 
