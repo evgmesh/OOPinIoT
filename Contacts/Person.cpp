@@ -20,11 +20,11 @@ Person::~Person() {
 
 std::ostream &operator<<(std::ostream &out, const Person &person) {
     out << std::left << std::setw(15) <<person.name << " | "
-             << std::left << std::setw(15) << person.email << " | "
-             << std::left << std::setw(15) << person.phone << " | "
+             << std::left << std::setw(15) << person.email << "|"
+             << std::left << std::setw(15) << person.phone << "|"
              << std::left << std::setw(15) << person.city;
-    person.relative ? std::cout << std::left << std::setw(15) << person.relative->name << std::endl : std::cout << std::endl;
-
+    person.relative ? std::cout << std::left << std::setw(15) << person.relative->name << std::endl
+                    : std::cout << std::endl;
     return out;
 }
 
@@ -47,5 +47,9 @@ void Person::setCity(std::string &n) {
 
 std::string Person::getName() {
     return name;
+}
+
+std::string Person::getCity() {
+    return city;
 }
 

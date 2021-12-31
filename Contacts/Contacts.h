@@ -16,7 +16,7 @@ public:
 private:
     int getAction() const;
     void addContact();
-    void printAll();
+    void printAll() const;
     void remove();
     void save();
     void read();

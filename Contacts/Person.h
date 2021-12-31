@@ -8,6 +8,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <sstream>
 
 class Person {
     friend std::ostream &operator<<(std::ostream &out, const Person &person);
@@ -20,6 +21,7 @@ public:
     void setPhone(std::string &n);
     void setCity(std::string &n);
     std::string getName();
+    std::string getCity();
 private:
     std::string name;
     std::string email;

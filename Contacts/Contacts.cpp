@@ -9,13 +9,13 @@ void menu();
 
 std::istream &operator>>(std::istream &in, Person &person) {
     std::string input;
-    std::cout << "Name: ";       in >> input;
+    std::cout << "Name: ";       std::getline(std::cin, input);
     person.setName(input);
     std::cout << "email: ";       in >> input;
     person.setEmail(input);
-    std::cout << "Phone: ";       in >> input;
+    std::cout << "Phone: ";       in >> input; in.clear(); in.ignore();
     person.setPhone(input);
-    std::cout << "City: ";       in >> input;
+    std::cout << "City: ";       std::getline(std::cin, input);
     person.setCity(input);
     return in;
 }
@@ -24,6 +24,7 @@ void Contacts::addContact(){
     Person person;
     std::cin >> person;
     contacts.push_back(person);
+    std::cout << person.getName() << " has been added to contact list\n";
 }
 
 
@@ -32,7 +33,7 @@ void Contacts::addContact(){
 int Contacts::getAction() const{
     menu();
     int choice(0);
-    std::cin >> choice;
+    std::cin >> choice; std::cin.clear(); std::cin.ignore();
     if (!std::cin || !choice) {
         throw(std::runtime_error("Invalid input. Program finished."));
     }
@@ -67,7 +68,7 @@ void Contacts::start(){
     }
 }
 
-void Contacts::printAll() {
+void Contacts::printAll() const {
     std::cout << std::endl;
     if(contacts.empty())
         throw(std::runtime_error("contact list is empty. "
@@ -100,8 +101,9 @@ void Contacts::save() {
     outputFile.open("../Contacts.txt", std::ios_base::out | std::ios_base::trunc);
     if(outputFile.is_open()) {
         for(auto &c : contacts)
-            outputFile.write((char *) &c, sizeof (c));
-//            outputFile << c;
+            outputFile << c;
+/*        better way to write to a file - write, but task requires usage of overloaded operator
+        outputFile.write((char *) &c, sizeof (c)); */
     } else
         throw(std::runtime_error("can't open a file, check file name.\nProgram finished."));
     outputFile.close();
@@ -112,11 +114,13 @@ void Contacts::read() {
     std::ifstream inputFile;
     inputFile.open("../Contacts.txt", std::ios_base::in);
     Person p;
-    if(inputFile.is_open()) {
-        while (inputFile.read((char *) &p, sizeof (p))) {
-//            inputFile.read((char *) &p, sizeof (p));
+    if (inputFile.is_open()) {
+
+
+/*        better way to read from a file - read an object written by write, but task requires usage of overloaded operator
+        while (inputFile.read((char *) &p, sizeof (p)))
             contacts.push_back(p);
-        }
+*/
     } else
         throw(std::runtime_error("can't open a file, check file name.\nProgram finished."));
     inputFile.close();
