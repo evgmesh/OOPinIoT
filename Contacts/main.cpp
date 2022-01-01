@@ -1,3 +1,6 @@
+/* Evgenii Meshcheriakov. Project 7 */
+
+
 #include "Contacts.h"
 #include "Person.h"
 

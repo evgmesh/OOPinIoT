@@ -1,6 +1,4 @@
-//
-// Created by Evgenii Meshcheriakov on 12/28/21.
-//
+/* Evgenii Meshcheriakov. Project 7 */
 
 #ifndef CONTACTS_CONTACTS_H
 #define CONTACTS_CONTACTS_H
