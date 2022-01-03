@@ -10,6 +10,7 @@ int main() {
 
     Contacts phonebook;
     phonebook.start();
+    Person person;
 #if 0
     Person p1("Person 1");
     std::cout << "p1 before:" << std::endl;      p1.Print();

@@ -65,8 +65,10 @@ void Contacts::start(){
             if(choice == PRINT)
                 Contacts::printAll();
 
-            if(choice == EXIT)
+            if(choice == EXIT) {
+                Contacts::save();
                 std::cout << "Bye-bye!" << std::endl;
+            }
         }
     } catch (std::exception & exception) {
         std::cout << "\nError: " << exception.what() << std::endl;
