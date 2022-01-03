@@ -4,10 +4,14 @@
 #ifndef CONTACTS_PERSON_H
 #define CONTACTS_PERSON_H
 
-#include <iostream>
+#include <cstring>
 #include <iomanip>
 #include <vector>
 #include <sstream>
+#include <fstream>
+#include "Center.h"
+
+constexpr int WIDTH = 20;
 
 class Person {
     friend std::ostream &operator<<(std::ostream &out, const Person &person);

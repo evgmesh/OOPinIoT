@@ -1,8 +1,9 @@
 /* Evgenii Meshcheriakov. Project 7 */
 
 #include "Contacts.h"
-
 void menu();
+
+
 
 
 std::istream &operator>>(std::istream &in, Person &person) {
@@ -73,11 +74,16 @@ void Contacts::start(){
 }
 
 void Contacts::printAll() const {
+//    Contacts::read();
     std::cout << std::endl;
     if(contacts.empty())
         throw(std::runtime_error("contact list is empty. "
                                  "Try to add at least one person.\nProgram finished."));
-
+    std::cout << std::setw(WIDTH) << center<std::string>("Name") << "|"
+              << std::setw(WIDTH) << center<std::string>("Email") << "|"
+              << std::setw(WIDTH) << center<std::string>("Phone") << "|"
+              << std::setw(WIDTH) << center<std::string>("City") << std::endl
+            << std::string(WIDTH*4, '-') << std::endl;
     for(auto &c : contacts)
         std::cout << c;
     std::cout << std::endl;
@@ -151,6 +157,8 @@ void Contacts::find() const{
 }
 
 
+
+
 void menu() {
     std::cout << "******************MENU:******************\n"
               << "1. Initialize (clear all records)\n"
@@ -168,7 +176,7 @@ void menu() {
 
 
 #if 0
-// Alternate version of remove
+// Alternate version of remove. Disadvantage - removes only first person in case of several with same name.
 void Contacts::remove() {
     std::string name;
     std::cout << "\nWARNING, this is permanent action. Removal can't undo\n"
