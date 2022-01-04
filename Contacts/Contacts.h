@@ -5,8 +5,14 @@
 
 #include "Person.h"
 
+constexpr char DELIM = '|';
+
+template<char DELIM>
+class Parts : public std::string {};
+
+
 class Contacts {
-    friend std::istream &operator>>(std::istream &in, Person &person);
+    friend std::istream &operator>>(std::istream &in, Parts<DELIM> &out);
 
 public:
     void start();

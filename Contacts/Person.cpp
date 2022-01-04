@@ -18,12 +18,12 @@ Person::~Person() {
 }
 
 std::ostream &operator<<(std::ostream &out, const Person &person) {
-    out << std::left << std::setw(WIDTH) << person.name << "|"
-        << std::left << std::setw(WIDTH) << person.email << "|"
-        << std::right << std::setw(WIDTH) << person.phone << "|"
-        << std::left << std::setw(WIDTH) << person.city;
-    person.relative ? std::cout << std::left << std::setw(WIDTH) << person.relative->name << std::endl
-                    : std::cout << std::endl;
+    out << person.name << "|"
+        << person.email << "|"
+        << person.phone << "|"
+        << person.city << "|";
+    person.relative ? out << person.relative->getName() << std::endl
+                    : out << std::endl;
     return out;
 }
 //<< std::setiosflags(std::ios::left)
@@ -31,17 +31,18 @@ std::ostream &operator<<(std::ostream &out, const Person &person) {
 void Person::setName(std::string &n) {
     name = n;
 }
-
 void Person::setEmail(std::string &n) {
     email = n;
 }
-
 void Person::setPhone(std::string &n) {
     phone = n;
 }
-
 void Person::setCity(std::string &n) {
     city = n;
+}
+void Person::setRelative(Person &person) {
+    relative = &person;
+    person.relative = this;
 }
 
 std::string Person::getName() const{
@@ -51,4 +52,20 @@ std::string Person::getName() const{
 std::string Person::getCity() const{
     return city;
 }
+
+std::string Person::getEmail() const {
+    return email;
+}
+
+std::string Person::getPhone() const {
+    return phone;
+}
+
+std::string Person::getRelated() const {
+    if (relative)
+        return relative->getName();
+    else
+        return "";
+}
+
 

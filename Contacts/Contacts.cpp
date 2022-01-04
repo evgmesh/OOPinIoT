@@ -6,6 +6,8 @@ void menu();
 
 
 
+#if 0
+// Use this for reading from user
 std::istream &operator>>(std::istream &in, Person &person) {
     std::string input;
     std::cout << "Name: ";       std::getline(std::cin, input);
@@ -18,11 +20,35 @@ std::istream &operator>>(std::istream &in, Person &person) {
     person.setCity(input);
     return in;
 }
+#endif
 
 void Contacts::addContact(){
     Person person;
-    std::cin >> person;
+    bool found = false;
+    std::string input;
+    std::cout << "Name: ";       std::getline(std::cin, input);
+    person.setName(input);
+    std::cout << "email: ";       std::cin >> input;
+    person.setEmail(input);
+    std::cout << "Phone: ";       std::cin >> input; std::cin.clear(); std::cin.ignore();
+    person.setPhone(input);
+    std::cout << "City: ";       std::getline(std::cin, input);
+    person.setCity(input);
+    std::cout << "Relative: ";       std::getline(std::cin, input);
+    for (auto it = contacts.begin(); it <= contacts.end(); ++it ) {
+        if(input.empty())
+            break;
+        else if (it->getName() == input) {
+            person.setRelative(*it);
+            found = true;
+            break;
+        }
+        else if (!found && it == contacts.end())
+            throw(std::runtime_error("can't find relative with given name, person doesn't exist in "
+                                     "contact list or check your entry for typo.\nProgram finished."));
+    }
     contacts.push_back(person);
+    Contacts::save();
     std::cout << person.getName() << " has been added to contact list\n";
 }
 
@@ -45,6 +71,7 @@ void Contacts::start(){
             choice = getAction();
 
             if(choice == INIT)
+//                Contacts::test();
                 std::cout << "Init"<< std::endl;
 
             if(choice == SAVE)
@@ -62,8 +89,10 @@ void Contacts::start(){
             if(choice == FIND)
                 Contacts::find();
 
-            if(choice == PRINT)
+            if(choice == PRINT) {
+                Contacts::read();
                 Contacts::printAll();
+            }
 
             if(choice == EXIT) {
                 Contacts::save();
@@ -76,7 +105,6 @@ void Contacts::start(){
 }
 
 void Contacts::printAll() const {
-//    Contacts::read();
     std::cout << std::endl;
     if(contacts.empty())
         throw(std::runtime_error("contact list is empty. "
@@ -84,11 +112,17 @@ void Contacts::printAll() const {
     std::cout << std::setw(WIDTH) << center<std::string>("Name") << "|"
               << std::setw(WIDTH) << center<std::string>("Email") << "|"
               << std::setw(WIDTH) << center<std::string>("Phone") << "|"
-              << std::setw(WIDTH) << center<std::string>("City") << std::endl
-            << std::string(WIDTH*4, '-') << std::endl;
-    for(auto &c : contacts)
-        std::cout << c;
-    std::cout << std::endl;
+              << std::setw(WIDTH) << center<std::string>("City") << "|"
+              << std::setw(WIDTH) << center<std::string>("Related") << std::endl
+              << std::string(WIDTH*5, '-') << std::endl;
+    for(auto &c : contacts) {
+        std::cout << std::left << std::setw(WIDTH) << c.getName() << "|"
+                << std::left << std::setw(WIDTH) << c.getEmail() << "|"
+                << std::right << std::setw(WIDTH) << c.getPhone() << "|"
+                << std::left << std::setw(WIDTH) << c.getCity() << "|"
+                << std::left << std::setw(WIDTH) << c.getRelated() << std::endl;
+    }
+    std::cout  << std::endl;
 }
 
 // Removes all contacts with given name. Think about giving options if more than one person is found
@@ -123,13 +157,45 @@ void Contacts::save() {
     outputFile.close();
 }
 
+
+
+std::istream &operator>>(std::istream &in, Parts<DELIM> &out) {
+    std::getline(in, out, DELIM);
+    return in;
+}
+
+
+
 void Contacts::read() {
     contacts.clear();
     std::ifstream inputFile;
     inputFile.open("../Contacts.txt", std::ios_base::in);
-    Person p;
+    std::string buf;
     if (inputFile.is_open()) {
-
+        while (std::getline(inputFile, buf))
+        {
+            Person p;
+            std::istringstream iss(buf);
+            std::vector<std::string> results((std::istream_iterator<Parts<DELIM>>(iss)),
+                                         std::istream_iterator<Parts<DELIM>>());
+            p.setName(results[0]);
+            p.setEmail(results[1]);
+            p.setPhone(results[2]);
+            p.setCity(results[3]);
+            /****************
+             * IMPORTANT
+             *
+             *
+             * Here I would need to read related person, something like:  p.setRelative(results[4]);
+             * but information is saved to file as text due to requirements of operator overloading,
+             * so I can't save objects in binary form and read later as objects
+             * So relation of Person will be downgraded to simple vector<string>
+             *
+             *
+             *
+             */
+            contacts.push_back(p);
+        }
 
 /*        better way to read from a file - read an object written by write, but task requires usage of overloaded operator
         while (inputFile.read((char *) &p, sizeof (p)))

@@ -23,8 +23,12 @@ public:
     void setEmail(std::string &n);
     void setPhone(std::string &n);
     void setCity(std::string &n);
+    void setRelative(Person &person);
     std::string getName() const;
+    std::string getEmail() const;
+    std::string getPhone() const;
     std::string getCity() const;
+    std::string getRelated() const;
 private:
     std::string name;
     std::string email;
