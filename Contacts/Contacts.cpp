@@ -3,28 +3,27 @@
 #include "Contacts.h"
 void menu();
 
-
-
-
-#if 0
-// Use this for reading from user
-std::istream &operator>>(std::istream &in, Person &person) {
-    std::string input;
-    std::cout << "Name: ";       std::getline(std::cin, input);
-    person.setName(input);
-    std::cout << "email: ";       in >> input;
-    person.setEmail(input);
-    std::cout << "Phone: ";       in >> input; in.clear(); in.ignore();
-    person.setPhone(input);
-    std::cout << "City: ";       std::getline(std::cin, input);
-    person.setCity(input);
-    return in;
+void file_remover(){
+    remove(FILENAME) ? throw(std::runtime_error("file doesn't exist. "
+                                                         "Database is already empty!"))
+                        : std::cout<<"\nAll records are cleared!\n" << std::endl;
 }
-#endif
+void Contacts::init() {
+    std::string input;
+    bool removed = false;
+    std::cout << "\nWARNING, this is permanent action. Removal can't undo\n"
+              <<"Please confirm(y/n): ";
+    std::cin >> input;
+    if(input == "y") {
+        contacts.clear();
+        file_remover();
+    } else
+        std::cout << "\nCANCELED\n";
+}
 
 void Contacts::addContact(){
     Person person;
-    bool found = false;
+
     std::string input;
     std::cout << "Name: ";       std::getline(std::cin, input);
     person.setName(input);
@@ -35,21 +34,12 @@ void Contacts::addContact(){
     std::cout << "City: ";       std::getline(std::cin, input);
     person.setCity(input);
     std::cout << "Relative: ";       std::getline(std::cin, input);
-    for (auto it = contacts.begin(); it <= contacts.end(); ++it ) {
-        if(input.empty())
-            break;
-        else if (it->getName() == input) {
-            person.setRelative(*it);
-            found = true;
-            break;
-        }
-        else if (!found && it == contacts.end())
-            throw(std::runtime_error("can't find relative with given name, person doesn't exist in "
-                                     "contact list or check your entry for typo.\nProgram finished."));
-    }
+    person.setRelative(input);
+
     contacts.push_back(person);
     Contacts::save();
-    std::cout << person.getName() << " has been added to contact list\n";
+    std::cout << std::endl <<  person.getName()
+              << " has been added to contact list successfully!\n" << std::endl;
 }
 
 
@@ -58,7 +48,7 @@ int Contacts::getAction() const{
     int choice(0);
     std::cin >> choice; std::cin.clear(); std::cin.ignore();
     if (!std::cin || !choice) {
-        throw(std::runtime_error("Invalid input. Program finished."));
+        throw(std::runtime_error("invalid input. Program finished."));
     }
     return choice;
 }
@@ -70,9 +60,10 @@ void Contacts::start(){
         while (choice != EXIT) {
             choice = getAction();
 
-            if(choice == INIT)
-//                Contacts::test();
-                std::cout << "Init"<< std::endl;
+            if(choice == INIT) {
+                Contacts::init();
+                break;
+            }
 
             if(choice == SAVE)
                 Contacts::save();
@@ -145,8 +136,10 @@ void Contacts::remove() {
 }
 
 void Contacts::save() {
+    if(contacts.empty())
+        throw(std::runtime_error("nothing to save, add at least one contact.\nProgram finished."));
     std::ofstream outputFile;
-    outputFile.open("../Contacts.txt", std::ios_base::out | std::ios_base::trunc);
+    outputFile.open(FILENAME, std::ios_base::out | std::ios_base::trunc);
     if(outputFile.is_open()) {
         for(auto &c : contacts)
             outputFile << c;
@@ -169,33 +162,28 @@ std::istream &operator>>(std::istream &in, Parts<DELIM> &out) {
 void Contacts::read() {
     contacts.clear();
     std::ifstream inputFile;
-    inputFile.open("../Contacts.txt", std::ios_base::in);
+    inputFile.open(FILENAME, std::ios_base::in);
     std::string buf;
     if (inputFile.is_open()) {
-        while (std::getline(inputFile, buf))
-        {
+            if (inputFile.peek() == std::ifstream::traits_type::eof()) {
+                inputFile.close();
+                throw(std::runtime_error("data base file is empty.\nProgram finished."));
+            }
+        do {
+            std::getline(inputFile, buf);
             Person p;
             std::istringstream iss(buf);
             std::vector<std::string> results((std::istream_iterator<Parts<DELIM>>(iss)),
-                                         std::istream_iterator<Parts<DELIM>>());
-            p.setName(results[0]);
-            p.setEmail(results[1]);
-            p.setPhone(results[2]);
-            p.setCity(results[3]);
-            /****************
-             * IMPORTANT
-             *
-             *
-             * Here I would need to read related person, something like:  p.setRelative(results[4]);
-             * but information is saved to file as text due to requirements of operator overloading,
-             * so I can't save objects in binary form and read later as objects
-             * So relation of Person will be downgraded to simple vector<string>
-             *
-             *
-             *
-             */
-            contacts.push_back(p);
-        }
+                                             std::istream_iterator<Parts<DELIM>>());
+            if (!buf.empty()) {
+                p.setName(results[0]);
+                p.setEmail(results[1]);
+                p.setPhone(results[2]);
+                p.setCity(results[3]);
+                p.setRelative(results[4]);
+                contacts.push_back(p);
+            }
+        } while (!buf.empty());
 
 /*        better way to read from a file - read an object written by write, but task requires usage of overloaded operator
         while (inputFile.read((char *) &p, sizeof (p)))
@@ -221,11 +209,7 @@ void Contacts::find() const{
             throw(std::runtime_error("can't find contact with given city, person doesn't exist in "
                                      "contact list or check your entry for typo.\nProgram finished."));
     }
-
 }
-
-
-
 
 void menu() {
     std::cout << "******************MENU:******************\n"

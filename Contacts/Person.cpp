@@ -4,26 +4,18 @@
 
 
 Person::Person(const char *name_, const char *email_, const char *phone_, const char *city_) :
-name(name_), email(email_), phone(phone_), city(city_) {
-    relative = nullptr;
+        name(name_), email(email_), phone(phone_), city(city_), relatives(0) {
 }
 
-Person::Person(const char *name_, const char *email_, const char *phone_, const char *city_, Person &person_) :
-        name(name_), email(email_), phone(phone_), city(city_) {
-    relative = &person_;
-    person_.relative = this;
-}
-Person::~Person() {
-    if(relative) relative = nullptr;
-}
 
 std::ostream &operator<<(std::ostream &out, const Person &person) {
     out << person.name << "|"
         << person.email << "|"
         << person.phone << "|"
         << person.city << "|";
-    person.relative ? out << person.relative->getName() << std::endl
-                    : out << std::endl;
+    for(auto i = person.relatives.begin(); i <= person.relatives.end(); ++i) {
+        i == person.relatives.end() ? out << std::endl : out << *i << " ";
+    }
     return out;
 }
 //<< std::setiosflags(std::ios::left)
@@ -40,9 +32,8 @@ void Person::setPhone(std::string &n) {
 void Person::setCity(std::string &n) {
     city = n;
 }
-void Person::setRelative(Person &person) {
-    relative = &person;
-    person.relative = this;
+void Person::setRelative(std::string &n) {
+    relatives.push_back(n);
 }
 
 std::string Person::getName() const{
@@ -62,10 +53,11 @@ std::string Person::getPhone() const {
 }
 
 std::string Person::getRelated() const {
-    if (relative)
-        return relative->getName();
-    else
-        return "";
+
+    std::string result{};
+    for(auto &i : relatives)
+        result += i + " ";
+    return result;
 }
 
 

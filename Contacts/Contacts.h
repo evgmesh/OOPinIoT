@@ -6,6 +6,7 @@
 #include "Person.h"
 
 constexpr char DELIM = '|';
+constexpr char FILENAME[] = "../Contacts.txt";
 
 template<char DELIM>
 class Parts : public std::string {};
@@ -18,6 +19,7 @@ public:
     void start();
 private:
     int getAction() const;
+    void init();
     void addContact();
     void printAll() const;
     void remove();
