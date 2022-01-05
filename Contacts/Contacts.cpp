@@ -1,16 +1,12 @@
 /* Evgenii Meshcheriakov. Project 7 */
 
 #include "Contacts.h"
-void menu();
 
-void file_remover(){
-    remove(FILENAME) ? throw(std::runtime_error("file doesn't exist. "
-                                                         "Database is already empty!"))
-                        : std::cout<<"\nAll records are cleared!\n" << std::endl;
-}
+void menu();
+void file_remover();
+
 void Contacts::init() {
     std::string input;
-    bool removed = false;
     std::cout << "\nWARNING, this is permanent action. Removal can't undo\n"
               <<"Please confirm(y/n): ";
     std::cin >> input;
@@ -22,22 +18,27 @@ void Contacts::init() {
 }
 
 void Contacts::addContact(){
+
+    Contacts::read();
+
     Person person;
 
     std::string input;
     std::cout << "Name: ";       std::getline(std::cin, input);
     person.setName(input);
-    std::cout << "email: ";       std::cin >> input;
+    std::cout << "email: ";      std::cin >> input;
     person.setEmail(input);
-    std::cout << "Phone: ";       std::cin >> input; std::cin.clear(); std::cin.ignore();
+    std::cout << "Phone: ";      std::cin >> input; std::cin.clear(); std::cin.ignore();
     person.setPhone(input);
     std::cout << "City: ";       std::getline(std::cin, input);
     person.setCity(input);
-    std::cout << "Relative: ";       std::getline(std::cin, input);
+    std::cout << "Relative (press ENTER if no relatives): ";
+                                 std::getline(std::cin, input);
     person.setRelative(input);
 
     contacts.push_back(person);
     Contacts::save();
+
     std::cout << std::endl <<  person.getName()
               << " has been added to contact list successfully!\n" << std::endl;
 }
@@ -62,14 +63,23 @@ void Contacts::start(){
 
             if(choice == INIT) {
                 Contacts::init();
-                break;
+                choice = EXIT;
             }
 
             if(choice == SAVE)
                 Contacts::save();
 
-            if(choice == READ)
-                Contacts::read();
+            if(choice == READ) {
+                int counter = Contacts::read();
+                if (counter == 0)
+                    std::cout << "\nDatabase file is empty, read 0 "
+                                 "contacts.\nProgram finished.\n";
+                else
+                    std::cout << "\nSuccessfully read " << counter
+                              << " contact/s from the database\n";
+                std::cout << std::endl;
+                choice = EXIT;
+            }
 
             if(choice == ADD)
                 Contacts::addContact();
@@ -85,10 +95,8 @@ void Contacts::start(){
                 Contacts::printAll();
             }
 
-            if(choice == EXIT) {
-                Contacts::save();
-                std::cout << "Bye-bye!" << std::endl;
-            }
+            if(choice == EXIT)
+                std::cout << "\nBye-bye!" << std::endl;
         }
     } catch (std::exception & exception) {
         std::cout << "\nError: " << exception.what() << std::endl;
@@ -100,18 +108,9 @@ void Contacts::printAll() const {
     if(contacts.empty())
         throw(std::runtime_error("contact list is empty. "
                                  "Try to add at least one person.\nProgram finished."));
-    std::cout << std::setw(WIDTH) << center<std::string>("Name") << "|"
-              << std::setw(WIDTH) << center<std::string>("Email") << "|"
-              << std::setw(WIDTH) << center<std::string>("Phone") << "|"
-              << std::setw(WIDTH) << center<std::string>("City") << "|"
-              << std::setw(WIDTH) << center<std::string>("Related") << std::endl
-              << std::string(WIDTH*5, '-') << std::endl;
+    rowLabels();
     for(auto &c : contacts) {
-        std::cout << std::left << std::setw(WIDTH) << c.getName() << "|"
-                << std::left << std::setw(WIDTH) << c.getEmail() << "|"
-                << std::right << std::setw(WIDTH) << c.getPhone() << "|"
-                << std::left << std::setw(WIDTH) << c.getCity() << "|"
-                << std::left << std::setw(WIDTH) << c.getRelated() << std::endl;
+        printer(c);
     }
     std::cout  << std::endl;
 }
@@ -127,12 +126,17 @@ void Contacts::remove() {
         if (it->getName() == name) {
             removed = true;
             contacts.erase(it);
-            std::cout << name << " has been removed successfully!"  << std::endl;
+            std::cout << "\n" << name << " has been removed successfully!";
         }
         else if (!removed && it == contacts.end())
             throw(std::runtime_error("can't find contact with given city, person doesn't exist in "
                                      "contact list or check your entry for typo.\nProgram finished."));
     }
+    if(!contacts.empty())
+        Contacts::save();
+    else
+        file_remover();
+    std::cout << '\n' << std::endl;
 }
 
 void Contacts::save() {
@@ -143,7 +147,7 @@ void Contacts::save() {
     if(outputFile.is_open()) {
         for(auto &c : contacts)
             outputFile << c;
-/*        better way to write to a file - write, but task requires usage of overloaded operator
+/*        better way to write to a file - write(), but task requires usage of overloaded operator
         outputFile.write((char *) &c, sizeof (c)); */
     } else
         throw(std::runtime_error("can't open a file, check file name.\nProgram finished."));
@@ -151,47 +155,46 @@ void Contacts::save() {
 }
 
 
-
 std::istream &operator>>(std::istream &in, Parts<DELIM> &out) {
     std::getline(in, out, DELIM);
     return in;
 }
 
-
-
-void Contacts::read() {
-    contacts.clear();
-    std::ifstream inputFile;
-    inputFile.open(FILENAME, std::ios_base::in);
+int Contacts::read() {
     std::string buf;
-    if (inputFile.is_open()) {
-            if (inputFile.peek() == std::ifstream::traits_type::eof()) {
-                inputFile.close();
-                throw(std::runtime_error("data base file is empty.\nProgram finished."));
-            }
-        do {
-            std::getline(inputFile, buf);
+    int counter(0);
+    contacts.clear();
+
+    std::fstream inputFile;
+    inputFile.open(FILENAME, std::ios_base::out | std::ios_base::app);
+    inputFile.close();
+    inputFile.open(FILENAME, std::ios_base::in);
+    if(!inputFile.is_open())
+        throw(std::runtime_error("can't open a file, check file name.\nProgram finished."));
+    do {
+        std::getline(inputFile, buf);
+        if (!buf.empty()) {
             Person p;
             std::istringstream iss(buf);
             std::vector<std::string> results((std::istream_iterator<Parts<DELIM>>(iss)),
-                                             std::istream_iterator<Parts<DELIM>>());
-            if (!buf.empty()) {
-                p.setName(results[0]);
-                p.setEmail(results[1]);
-                p.setPhone(results[2]);
-                p.setCity(results[3]);
-                p.setRelative(results[4]);
-                contacts.push_back(p);
-            }
-        } while (!buf.empty());
+                                                 std::istream_iterator<Parts<DELIM>>());
+            p.setName(results[0]);
+            p.setEmail(results[1]);
+            p.setPhone(results[2]);
+            p.setCity(results[3]);
+            p.setRelative(results[4]);
+            contacts.push_back(p);
+            ++counter;
+        }
+    } while (!buf.empty());
 
 /*        better way to read from a file - read an object written by write, but task requires usage of overloaded operator
         while (inputFile.read((char *) &p, sizeof (p)))
             contacts.push_back(p);
 */
-    } else
-        throw(std::runtime_error("can't open a file, check file name.\nProgram finished."));
+
     inputFile.close();
+    return counter;
 }
 
 // I don't like for loop in here (extra bool variable). Need to change to better solution
@@ -202,14 +205,42 @@ void Contacts::find() const{
     std::getline(std::cin, city);
     for (auto it = contacts.begin(); it <= contacts.end(); ++it ) {
         if (it->getCity() == city) {
-            std::cout << *it;
+            if(!found) {
+                std::cout << "\nFound following people:\n";
+                rowLabels();
+            }
+            printer(*it);
             found = true;
         }
         else if (!found && it == contacts.end())
             throw(std::runtime_error("can't find contact with given city, person doesn't exist in "
                                      "contact list or check your entry for typo.\nProgram finished."));
     }
+    std::cout << "\n";
 }
+
+void Contacts::printer(Person const & person) const{
+    std::cout << std::left << std::setw(WIDTH) << person.getName() << "|"
+              << std::left << std::setw(WIDTH) << person.getEmail() << "|"
+              << std::right << std::setw(WIDTH) << person.getPhone() << "|"
+              << std::left << std::setw(WIDTH) << person.getCity() << "|"
+              << std::left << std::setw(WIDTH) << person.getRelated() << std::endl;
+}
+void Contacts::rowLabels () const {
+    std::cout << std::setw(WIDTH) << center<std::string>("Name") << "|"
+              << std::setw(WIDTH) << center<std::string>("Email") << "|"
+              << std::setw(WIDTH) << center<std::string>("Phone") << "|"
+              << std::setw(WIDTH) << center<std::string>("City") << "|"
+              << std::setw(WIDTH) << center<std::string>("Related") << std::endl
+              << std::string(WIDTH*5, '-') << std::endl;
+};
+
+
+void file_remover(){
+    remove(FILENAME) ? throw(std::runtime_error("file doesn't exist. ""Database is already empty!"))
+                     : std::cout<<"\nAll records are cleared!" << std::endl;
+}
+
 
 void menu() {
     std::cout << "******************MENU:******************\n"

@@ -19,12 +19,14 @@ public:
     void start();
 private:
     int getAction() const;
+    void printer(Person const &person) const;
     void init();
     void addContact();
     void printAll() const;
+    void rowLabels () const;
     void remove();
     void save();
-    void read();
+    int read();
     void find() const;
     std::vector<Person> contacts;
 };
