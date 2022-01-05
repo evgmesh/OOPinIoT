@@ -28,6 +28,7 @@ private:
     void save();
     int read();
     void find() const;
+    void addRelated();
     std::vector<Person> contacts;
 };
 

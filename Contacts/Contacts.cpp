@@ -55,7 +55,7 @@ int Contacts::getAction() const{
 }
 
 void Contacts::start(){
-    enum {INIT = 1, SAVE, READ, ADD, REMOVE, FIND, PRINT, EXIT};
+    enum {INIT = 1, SAVE, READ, ADD, REMOVE, FIND, PRINT, RELATE, EXIT};
     int choice(0);
     try {
         while (choice != EXIT) {
@@ -93,6 +93,10 @@ void Contacts::start(){
             if(choice == PRINT) {
                 Contacts::read();
                 Contacts::printAll();
+            }
+            if(choice == RELATE) {
+                Contacts::read();
+                Contacts::addRelated();
             }
 
             if(choice == EXIT)
@@ -233,6 +237,29 @@ void Contacts::rowLabels () const {
               << std::setw(WIDTH) << center<std::string>("City") << "|"
               << std::setw(WIDTH) << center<std::string>("Related") << std::endl
               << std::string(WIDTH*5, '-') << std::endl;
+}
+
+void Contacts::addRelated() {
+    std::string contactName{}, relatedName{};
+    int counter(0);
+    std::cout << "Enter name of the contact in the list: ";
+    std::getline(std::cin, contactName);
+    for (auto it = contacts.begin(); it <= contacts.end(); ++it ) {
+        if (it->getName() == contactName) {
+            ++counter;
+            if(counter == 2)
+                std::cout << "WARNING: found more then one contact with name "
+                          << contactName << std::endl;
+            std::cout << "Enter name of related person for " << contactName << ": ";
+            std::getline(std::cin, relatedName);
+            it->setRelative(relatedName);
+        }
+        else if (counter == 0 && it == contacts.end())
+            throw(std::runtime_error("can't find contact with given contactName, person doesn't exist in "
+                                     "contact list or check your entry for typo.\nProgram finished."));
+    }
+    Contacts::save();
+    std::cout << "Relation has been created successfully" << std::endl;
 };
 
 
@@ -244,15 +271,16 @@ void file_remover(){
 
 void menu() {
     std::cout << "******************MENU:******************\n"
-              << "1. Initialize (clear all records)\n"
-              << "2. Save contact information to a file\n"
-              << "3. Read contact information from a file\n"
-              << "4. Add new person to phone book\n"
-              << "5. Remove a person from the phone book\n"
-              << "6. Print a list of persons who live in the given city\n"
-              << "7. Print all contact information, relatives are printed before other persons\n"
-              << "8. EXIT PROGRAM\n"
-              << "Please, choose an action providing corresponding number: ";
+                 "1. Initialize (clear all records)\n"
+                 "2. Save contact information to a file\n"
+                 "3. Read contact information from a file\n"
+                 "4. Add new person to phone book\n"
+                 "5. Remove a person from the phone book\n"
+                 "6. Print a list of persons who live in the given city\n"
+                 "7. Print all contact information, relatives are printed before other persons\n"
+                 "8. Add related person name to contact in the list\n"
+                 "9. EXIT PROGRAM\n"
+                 "Please, choose an action providing corresponding number: ";
 }
 
 
