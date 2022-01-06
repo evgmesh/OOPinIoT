@@ -24,15 +24,15 @@ void Contacts::addContact(){
     Person person;
 
     std::string input;
-    std::cout << "Name: ";       std::getline(std::cin, input);
+    std::cout << "Name (first (last)): ";       std::getline(std::cin, input);
     person.setName(input);
-    std::cout << "email: ";      std::cin >> input;
+    std::cout << "email (example@example.fi): ";      std::cin >> input;
     person.setEmail(input);
-    std::cout << "Phone: ";      std::cin >> input; std::cin.clear(); std::cin.ignore();
+    std::cout << "Phone (0123456789): ";      std::cin >> input; std::cin.clear(); std::cin.ignore();
     person.setPhone(input);
-    std::cout << "City: ";       std::getline(std::cin, input);
+    std::cout << "City (Example (Example)): ";       std::getline(std::cin, input);
     person.setCity(input);
-    std::cout << "Relative (press ENTER if no relatives): ";
+    std::cout << "Relative (first (last), press ENTER if no relatives): ";
                                  std::getline(std::cin, input);
     person.setRelative(input);
 
@@ -259,7 +259,7 @@ void Contacts::addRelated() {
                                      "contact list or check your entry for typo.\nProgram finished."));
     }
     Contacts::save();
-    std::cout << "Relation has been created successfully" << std::endl;
+    std::cout << "\nRelation has been created successfully\n" << std::endl;
 };
 
 
