@@ -5,10 +5,11 @@
 
 #include "Person.h"
 
-constexpr char DELIM = '|';
 constexpr char FILENAME[] = "../Contacts.txt";
 
-template<char DELIM>
+constexpr char DELIM = '|';
+// template for reading csv with custom separator specified as DELIM
+template<char>
 class Parts : public std::string {};
 
 
@@ -34,3 +35,4 @@ private:
 
 
 #endif //CONTACTS_CONTACTS_H
+
