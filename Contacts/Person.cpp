@@ -9,13 +9,20 @@ Person::Person(const char *name_, const char *email_, const char *phone_, const 
 
 
 std::ostream &operator<<(std::ostream &out, const Person &person) {
-    out << person.name << "|"
-        << person.email << "|"
-        << person.phone << "|"
-        << person.city << "|";
+    out << person.name << DELIM
+        << person.email << DELIM
+        << person.phone << DELIM
+        << person.city << DELIM;
+#if 0
     for (auto i = person.relatives.begin(); i <= person.relatives.end(); ++i) {
         i == person.relatives.end() ? out << std::endl : out << *i << " ";
     }
+#endif
+#if 1
+    for (auto i = person.relatives.begin(); i <= person.relatives.end(); ++i) {
+        i == person.relatives.end() ? out << std::endl : out << *i << ' ';
+    }
+#endif
     return out;
 }
 

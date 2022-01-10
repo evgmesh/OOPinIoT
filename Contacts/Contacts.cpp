@@ -6,6 +6,10 @@ void menu();
 
 void file_remover();
 
+bool valid_email(const std::string& email);
+
+bool valid_phone(const std::string& number);
+
 void Contacts::init() {
     std::string input;
     std::cout << "\nWARNING, this is permanent action. Removal can't undo\n"
@@ -31,16 +35,29 @@ void Contacts::addContact() {
 
     std::cout << "email (example@example.fi): ";
     std::getline(std::cin, input);
+    while(!valid_email(input)) {
+        input.erase();
+        std::cout << "Invalid input. Check example. Try again: ";
+        std::getline(std::cin, input);
+    }
     person.setEmail(input);
+    input.clear();
 
     std::cout << "Phone (0123456789): ";
     std::getline(std::cin, input);
+    while(!valid_phone(input)) {
+        input.erase();
+        std::cout << "Invalid input. Check example. Try again: ";
+        std::getline(std::cin, input);
+    }
     person.setPhone(input);
 
+    input.clear();
     std::cout << "City (Example (Example)): ";
     std::getline(std::cin, input);
     person.setCity(input);
 
+    input.clear();
     std::cout << "Relative (first (last), press ENTER if no relatives): ";
     std::getline(std::cin, input);
     person.setRelative(input);
@@ -145,7 +162,7 @@ void Contacts::remove() {
             contacts.erase(it);
             std::cout << "\n" << name << " has been removed successfully!";
         } else if (!removed && it == contacts.end())
-            throw (std::runtime_error("can't find contact with given city, person doesn't exist in "
+            throw (std::runtime_error("can't find contact with given name, person doesn't exist in "
                                       "contact list or check your entry for typo.\nProgram finished."));
     }
     if (!contacts.empty())
@@ -291,6 +308,18 @@ void menu() {
                  "9. EXIT PROGRAM\n"
                  << std::string(60, '*') << std::endl
                  << "Please, choose an action providing corresponding number: ";
+}
+
+bool valid_email(const std::string& email) {
+    const std::regex pattern ("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
+    return std::regex_match(email, pattern);
+}
+
+
+bool valid_phone(const std::string& number)
+{
+    const std::regex pattern ("(^[0-9]*$)");
+    return std::regex_match(number, pattern);
 }
 
 

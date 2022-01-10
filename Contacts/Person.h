@@ -11,8 +11,10 @@
 #include <fstream>
 #include "Center.h"
 #include <cstdio>
+#include <regex>
 
-constexpr int WIDTH = 20;
+constexpr int WIDTH = 30;
+constexpr char DELIM = '|';
 
 class Person {
     friend std::ostream &operator<<(std::ostream &out, const Person &person);

@@ -7,7 +7,6 @@
 
 constexpr char FILENAME[] = "../Contacts.txt";
 
-constexpr char DELIM = '|';
 // template for reading csv with custom separator specified as DELIM
 template<char>
 class Parts : public std::string {};
